@@ -1,12 +1,18 @@
 import React from 'react';
-import {View} from 'react-native';
+import AllReducers from './src/reducers/index';
 import Login from './src/components/login'
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+import {Provider} from 'react-redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+const store = createStore(AllReducers, composeWithDevTools(applyMiddleware(thunk))); 
 
 const App = () => {
   return(
-    <View>
+    <Provider store={store}>
       <Login/>
-    </View>
+    </Provider>
   )
 }
 
