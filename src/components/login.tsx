@@ -1,25 +1,28 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity, CheckBox, StyleSheet} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import {GlobalStyles} from '../style/GlobalStyles';
+import {autheticateUserAction} from '../actions/authenticateUserAction';
 
 const Login = () => {
-  const [email, setEmail] = useState(); 
-  const [password, setPassword] = useState();
-  const [authenticationString, setAuthenticationString] = useState('');
+  const [email, setEmail] = useState(''); 
+  const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const userToken = useSelector((state:any) => state.AuthenticateUserReducer);
 
+  const dispatch = useDispatch();
   const styles = GlobalStyles;
 
   const changeRememberMe = (e:any) => rememberMe === false ? setRememberMe(true) : setRememberMe(false)
 
   const authenticate = () => {
-    setAuthenticationString('authenticated')
+    dispatch(autheticateUserAction(email, password));
   }
 
   return(
     <View>
       <View style={styles.top50}>
-        <Text>{authenticationString}</Text>
+        <Text>{userToken}</Text>
         <Text>Digiflow</Text>
       </View>
       <View style={styles.bottom40}>
