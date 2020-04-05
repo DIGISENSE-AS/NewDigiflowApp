@@ -1,4 +1,4 @@
-const AuthenticateUserReducer = (state:any = null, action:any ) => {
+const AuthenticateUserReducer = (state:any = {}, action:any ) => {
   switch (action.type){
     case 'Authenticated':
       return state = action.payload; 

@@ -47,4 +47,12 @@ export const GlobalStyles = StyleSheet.create({
   buttonText: {
     color: 'white'
   },
+
+  errorMessage: {
+    width: '100%',
+    padding: 5,
+    textAlign: 'center',
+    marginBottom: 10,
+    color: 'red'
+  }
 })

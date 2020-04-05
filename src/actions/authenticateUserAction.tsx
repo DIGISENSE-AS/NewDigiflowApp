@@ -1,8 +1,8 @@
 
 export const autheticateUserAction = (username: string, password: string) =>{
-  console.log('got request')
+  console.log(username)
   return async (dispatch:any) => {
-    const response = await fetch('http://192.168.1.142/api/digiflowApp/getUserAuthentication', {
+    const response = await fetch('https://digisense-backend.azurewebsites.net/api/digiflowApp/getUserAuthentication', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

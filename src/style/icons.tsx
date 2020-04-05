@@ -1,8 +1,8 @@
 import React from 'react';
-import {View} from 'react-native'
-import Svg, { Path, Rect } from 'react-native-svg';
+import {Text} from 'react-native'
+import Svg, { Path, Rect, SvgCss} from 'react-native-svg';
 
-const DigiflowLogo = () => {
+export const DigiflowLogo = () => {
   return(
     <Svg width="100%" height="100%" viewBox="2 -2.5 217.4 66.8">
       <Path fill="#133D8D" d="M4.5,41.7V5.6h15.6c4.2,0,7.4,0.7,9.7,2s4.2,3.3,5.5,5.9c1.4,2.6,2.1,5.7,2.1,9.4c0,3.6-0.7,6.8-2,9.6
@@ -39,4 +39,13 @@ const DigiflowLogo = () => {
   );
 }
 
-export default DigiflowLogo;
+export const Logo = ({logo}) => {
+  return(
+    <>
+    {logo !== '' ?
+      <Text>Digi Flow</Text>: 
+      <SvgCss preserveAspectRatio="YMinxMin" height="100%" width="100%" xml={logo} />
+    }
+    </> 
+  )
+}
