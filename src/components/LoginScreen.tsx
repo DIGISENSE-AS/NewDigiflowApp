@@ -1,37 +1,34 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, TouchableOpacity, CheckBox, StyleSheet} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, CheckBox} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {GlobalStyles} from '../style/GlobalStyles';
 import {autheticateUserAction} from '../actions/authenticateUserAction';
 
-const Login = () => {
+const LoginScreen = ({navigation}) => {
   const [errorMessage, setErrorMessage] = useState();
   const [email, setEmail] = useState(); 
   const [password, setPassword] = useState();
   const [rememberMe, setRememberMe] = useState(false);
   const userToken = useSelector((state:any) => state.AuthenticateUserReducer);
-  console.log(userToken)
   const dispatch = useDispatch();
 
+  // will fire when user token get updated by autheticate function
   useEffect(() => {
     if(userToken.length !== 0){
-      if(userToken.status == 'ok'){console.log('is ok')}
+      if(userToken.status == 'ok'){navigation.navigate('AuthLoadingScreen')}
       if(userToken.status === 'reject'){setErrorMessage(userToken.reason)}
     }
-  })
+  }, [userToken])
 
   const changeRememberMe = (e:any) => rememberMe === false ? setRememberMe(true) : setRememberMe(false)
 
-  const authenticate = async () => {
-    await dispatch(autheticateUserAction(email, password));
-    if(await userToken.status === 'ok'){console.log('can login')}
-  }
+  // when login button is pressed then user token will update
+  const authenticate = () => dispatch(autheticateUserAction(email, password));
 
   //console.log(userToken)
   return(
     <View>
       <View style={GlobalStyles.top50}>
-        {/* <Text>{userToken.token}</Text> */}
         <Text>Digiflow</Text>
       </View>
       <View style={GlobalStyles.bottom40}>
@@ -49,4 +46,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default LoginScreen

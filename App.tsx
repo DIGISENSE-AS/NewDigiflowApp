@@ -6,13 +6,14 @@ import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import Navigator from './src/routes/LoginStack'
 
 const store = createStore(AllReducers, composeWithDevTools(applyMiddleware(thunk))); 
 
 const App = () => {
   return(
     <Provider store={store}>
-      <AuthLoadingScreen/>
+      <Navigator/>
     </Provider>
   )
 }

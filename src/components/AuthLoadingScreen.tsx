@@ -9,9 +9,10 @@ const AuthLoadingScreen = () => {
   // gets data from authenticateUserReducer
   const userToken = useSelector((state:any) => state.AuthenticateUserReducer)
 
+  // sets spinner color based on what data is in user token
   const spinnerColor = () => {
     if(userToken.length === 0){return '#000000'}
-    if(userToken.spinnerColor){return userToken.spinnerColor}
+    if(userToken.logoSvg !== 0){return userToken.logoSVG}
     if(userToken.logoSVG === ''){return '#143D8D'}
   }
 
@@ -20,7 +21,7 @@ const AuthLoadingScreen = () => {
   return(
     <>
       <View style={GlobalStyles.top50}>
-        <Logo logo={showLogo}/>
+        <Logo logo={userToken.logoSVG}/>
       </View>
       <View style={GlobalStyles.bottom40}>
         <Spinner color={spinnerColor()}  type={"Wave"} />
