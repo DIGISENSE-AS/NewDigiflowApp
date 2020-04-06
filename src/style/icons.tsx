@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text} from 'react-native'
-import Svg, { Path, Rect, SvgCss} from 'react-native-svg';
+import Svg, { Path, Rect, SvgXml, SvgCss } from 'react-native-svg';
 
 export const DigiflowLogo = () => {
   return(
@@ -34,15 +34,15 @@ export const DigiflowLogo = () => {
               c0-0.4,0.1-0.8,0.4-1c0.3-0.3,0.6-0.4,1-0.4c0.3,0,0.6,0.1,0.8,0.3c0.2,0.2,0.4,0.4,0.4,0.7l-0.7,0.1c0-0.2-0.1-0.3-0.2-0.4
               c-0.1-0.1-0.2-0.1-0.4-0.1s-0.3,0.1-0.4,0.2c-0.1,0.2-0.2,0.4-0.2,0.7c0,0.3,0,0.6,0.1,0.7c0.1,0.2,0.3,0.3,0.5,0.3
               c0.1,0,0.3-0.1,0.4-0.2C213.6,22,213.7,21.8,213.7,21.6"/>
-
     </Svg>
   );
 }
 
 export const Logo = ({logo}) => {
+  console.log(logo.length)
   return(
     <>
-    {logo !== '' ?
+    {logo.length === 0 ?
       <Text>Digi Flow</Text>: 
       <SvgCss preserveAspectRatio="YMinxMin" height="100%" width="100%" xml={logo} />
     }
