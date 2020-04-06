@@ -1,29 +1,29 @@
-import React, {useEffect, useState} from 'react'
-import {useSelector, useDispatch} from 'react-redux';
+import React from 'react'
+import {useSelector} from 'react-redux';
 import {View} from 'react-native'
 import {GlobalStyles} from '../style/GlobalStyles';
-import {autheticateUserAction} from '../actions/authenticateUserAction';
 import {Logo} from '../style/icons';
 import Spinner from 'react-native-spinkit';
 
 const AuthLoadingScreen = () => {
   // gets data from authenticateUserReducer
-  const userToken = useSelector((state:any) => state.AuthenticateUserReducer);
-  const [color, setColor] = useState('#000000');
-  const dispatch = useDispatch();
+  const userToken = useSelector((state:any) => state.AuthenticateUserReducer)
 
-  
-  useEffect(() => {
-    dispatch(autheticateUserAction('demo@digisense.dk', 'demo'))
-  },[])
+  const spinnerColor = () => {
+    if(userToken.length === 0){return '#000000'}
+    if(userToken.spinnerColor){return userToken.spinnerColor}
+    if(userToken.logoSVG === ''){return '#143D8D'}
+  }
+
+  const showLogo = () => {if(userToken.length !== 0){return userToken.logoSVG}}  
 
   return(
     <>
       <View style={GlobalStyles.top50}>
-        <Logo logo={userToken.length !== 0 ? userToken.logo : ''}/>
+        <Logo logo={showLogo}/>
       </View>
       <View style={GlobalStyles.bottom40}>
-        <Spinner  type={"Wave"} />
+        <Spinner color={spinnerColor()}  type={"Wave"} />
       </View>
     </>
   )
