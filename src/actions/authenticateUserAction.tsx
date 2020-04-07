@@ -16,5 +16,4 @@ export const autheticateUserAction = (username: string, password: string) =>{
       payload: await response.json()
     })
   }
-  // 
 }
