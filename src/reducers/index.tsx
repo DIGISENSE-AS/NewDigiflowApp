@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-import AuthenticateUserReducer from './AuthenticateUserReducer';
+import SignInReducer from './SignInReducer';
 import GetActiveVouchersReducer from './GetActiveVouchersReducer'
 
 const AllReducers = combineReducers({
-  AuthenticateUserReducer,
+  SignInReducer,
   GetActiveVouchersReducer,
   
 })

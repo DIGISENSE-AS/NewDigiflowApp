@@ -3,21 +3,23 @@ import {View, Text, TextInput, ScrollView, TouchableOpacity} from 'react-native'
 import {useSelector, useDispatch} from 'react-redux';
 import {GlobalStyles} from '../style/GlobalStyles';
 import {getActiveVouchersAction} from '../actions/getActiveVouchersAction';
-import {autheticateUserAction } from '../actions/authenticateUserAction'
+import {ActiveVouchersNavigation} from '../style/Navigation';
 
 const ListActiveVouchers = ({navigation}) => {
   const styles = GlobalStyles;
   const dispatch = useDispatch()
   const [searchValue, setSearchValue] = useState();
   const [vouchers, setVouchers] = useState([]);
-  const userToken = useSelector((state:any) => state.AuthenticateUserReducer);
+  const userToken = useSelector((state:any) => state.SignInReducer);
   const vouchersReducer = useSelector((state:any) => state.GetActiveVouchersReducer);
 
   useEffect(() => {
-    console.log('usertoken:',userToken.userToken)
-    dispatch(getActiveVouchersAction(userToken.userToken))
-    setVouchers(vouchersReducer)
+    dispatch(getActiveVouchersAction(userToken.token))
   }, [])
+
+  useEffect(() => {
+    setVouchers(vouchersReducer.activeVouchers)
+  },[vouchersReducer])
 
   const searchVouchers = (val: any ) => {
     setSearchValue(val)
@@ -25,7 +27,7 @@ const ListActiveVouchers = ({navigation}) => {
     const stripText = (string: string) => string.replace((/[^a-zA-Z 0-9]+/g), '').toLowerCase()
     const stripedSerachValue = stripText(val)
     if(val !== '' && val !== ' '){
-      const list = vouchersReducer.filter(voucher => {
+      const list = vouchers.filter(voucher => {
         for(let field in voucher ) {
           const value  = (voucher as any)[field];
           if(stripText(value.toString()).includes(stripedSerachValue)) return true;
@@ -36,9 +38,9 @@ const ListActiveVouchers = ({navigation}) => {
         }
         return false
       })
-      setVouchers(list as any);
+      setVouchers(list);
     }else {
-      setVouchers(vouchersReducer as any );
+      setVouchers(vouchersReducer);
     }
   }
 
@@ -91,6 +93,7 @@ const ListActiveVouchers = ({navigation}) => {
           ))
         }
       </ScrollView>
+      <ActiveVouchersNavigation navigation={navigation}/>
     </View>
   )
 }

@@ -1,5 +1,6 @@
 
-export const autheticateUserAction = (username: string, password: string) =>{
+export const SignInAction = (username: string, password: string) =>{
+  console.log('sign in action')
   return async (dispatch: any) => {
     const response = await fetch('https://digisense-backend.azurewebsites.net/api/digiflow-app/getUserAuthentication', {
       method: 'POST',
@@ -11,8 +12,14 @@ export const autheticateUserAction = (username: string, password: string) =>{
     })
 
     dispatch({
-      type: 'Authenticated',
+      type: 'SignIn',
       payload: await response.json()
     })
   }
+}
+
+export const SignOutAction = () => {
+  return({
+    type: 'SignOut',
+  })
 }
