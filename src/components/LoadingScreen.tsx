@@ -1,13 +1,19 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {useSelector} from 'react-redux';
 import {View} from 'react-native'
 import {GlobalStyles} from '../style/GlobalStyles';
 import {Logo} from '../style/icons';
 import Spinner from 'react-native-spinkit';
 
-const AuthLoadingScreen = () => {
+const LoadingScreen = ({navigation}) => {
   // gets data from authenticateUserReducer
-  const userToken = useSelector((state:any) => state.AuthenticateUserReducer)
+  const userToken = useSelector((state:any) => state.SignInReducer)
+
+  useEffect(() =>{
+    setTimeout(() => {
+      navigation.navigate('ListActiveVouchers')
+    }, 3000)
+  },[])
 
   // sets spinner color based on what data is in user token
   const spinnerColor = () => {
@@ -31,4 +37,4 @@ const AuthLoadingScreen = () => {
 
 }
 
-export default AuthLoadingScreen;
+export default LoadingScreen;

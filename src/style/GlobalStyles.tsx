@@ -54,5 +54,59 @@ export const GlobalStyles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 10,
     color: 'red'
+  },
+
+  container:{
+    flex: 1
+  },
+
+  textField: {
+    color: 'black',
+    width: '100%',
+  },
+
+  listBox: {
+    minHeight: 100,
+    backgroundColor: '#e3e3e3',
+    borderBottomWidth: 1,
+    borderBottomColor: '#a9a9a9',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  listTextBox:{
+    justifyContent: 'center',
+    height: 60,
+    padding: 5
+  },
+
+  listHeader:{
+    fontSize: 15,
+    color: '#333'
+  },
+
+  listText:{
+    fontSize: 10,
+    color: '#333',
+  },
+
+  moveLeft: {
+    margin: 7
+  },
+
+  searchContainer : {
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  noMatch: {
+    marginTop: 30,
+    width: '100%', 
+    textAlign: 'center',
+    color: '#808080',
+    fontSize: 20
   }
 })

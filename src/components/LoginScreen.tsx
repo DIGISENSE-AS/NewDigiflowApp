@@ -2,20 +2,21 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, TouchableOpacity, CheckBox} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {GlobalStyles} from '../style/GlobalStyles';
-import {autheticateUserAction} from '../actions/authenticateUserAction';
+import {SignInAction} from '../actions/SignInAction';
 
 const LoginScreen = ({navigation}) => {
   const [errorMessage, setErrorMessage] = useState();
   const [email, setEmail] = useState(); 
   const [password, setPassword] = useState();
   const [rememberMe, setRememberMe] = useState(false);
-  const userToken = useSelector((state:any) => state.AuthenticateUserReducer);
+  const userToken = useSelector((state:any) => state.SignInReducer);
   const dispatch = useDispatch();
 
   // will fire when user token get updated by autheticate function
   useEffect(() => {
+    console.log(userToken)
     if(userToken.length !== 0){
-      if(userToken.status == 'ok'){navigation.navigate('AuthLoadingScreen')}
+      if(userToken.status == 'ok'){navigation.navigate('LoadingScreen')}
       if(userToken.status === 'reject'){setErrorMessage(userToken.reason)}
     }
   }, [userToken])
@@ -23,7 +24,10 @@ const LoginScreen = ({navigation}) => {
   const changeRememberMe = (e:any) => rememberMe === false ? setRememberMe(true) : setRememberMe(false)
 
   // when login button is pressed then user token will update
-  const authenticate = () => dispatch(autheticateUserAction(email, password));
+  const authenticate = () => {
+    console.log('autheticating')
+    dispatch(SignInAction(email, password))
+  };
 
   //console.log(userToken)
   return(
