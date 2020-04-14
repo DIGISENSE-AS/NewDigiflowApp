@@ -78,7 +78,7 @@ const ListActiveVouchers = ({navigation}) => {
         
           vouchers.map((voucher: any )  => (
     
-            <TouchableOpacity style={styles.listBox} onPress={() => navigation.navigate('ShowVoucher', voucher)} key={voucher.voucherToken}>
+            <TouchableOpacity style={styles.listBox} onPress={() => navigation.navigate('ShowActiveVoucher', voucher)} key={voucher.voucherToken}>
               <View style={styles.listTextBox}  >
                 <Text style={styles.listHeader}>{convertVendorName(voucher.vendorName)}</Text>
                 <Text style={styles.listText}>{voucher.appendixNo}</Text>
