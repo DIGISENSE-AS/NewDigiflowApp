@@ -13,7 +13,7 @@ const ShowActiveVoucher = ({navigation}) => {
   },[])
 
   useEffect(() =>{
-    if(GetActiveVoucherReducer.length !== 0){
+    if(Object.keys(GetActiveVoucherReducer).length !== 0){
       setPdf(GetActiveVoucherReducer.data)
     }
     console.log(pdf)
