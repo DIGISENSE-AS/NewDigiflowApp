@@ -6,19 +6,20 @@ import {getActiveVouchersAction} from '../actions/getActiveVouchersAction';
 import {ActiveVouchersNavigation} from '../style/Navigation';
 
 const ListActiveVouchers = ({navigation}) => {
-  const styles = GlobalStyles;
-  const dispatch = useDispatch()
-  const [searchValue, setSearchValue] = useState();
+  const [searchValue, setSearchValue] = useState('');
   const [vouchers, setVouchers] = useState([]);
   const userToken = useSelector((state:any) => state.SignInReducer);
   const vouchersReducer = useSelector((state:any) => state.GetActiveVouchersReducer);
+  const styles = GlobalStyles;
+  const dispatch = useDispatch();
+  
 
   useEffect(() => {
-    dispatch(getActiveVouchersAction(userToken.token))
+    dispatch(getActiveVouchersAction(userToken.token));
   }, [])
 
   useEffect(() => {
-    setVouchers(vouchersReducer.activeVouchers)
+    if(vouchersReducer.length !== 0) {setVouchers(vouchersReducer.activeVouchers)}
   },[vouchersReducer])
 
   const searchVouchers = (val: any ) => {
@@ -26,7 +27,8 @@ const ListActiveVouchers = ({navigation}) => {
 
     const stripText = (string: string) => string.replace((/[^a-zA-Z 0-9]+/g), '').toLowerCase()
     const stripedSerachValue = stripText(val)
-    if(val !== '' && val !== ' '){
+    if(val !== '' && val!== ' '){
+      console.log(val !== '' && val !== ' ')
       const list = vouchers.filter(voucher => {
         for(let field in voucher ) {
           const value  = (voucher as any)[field];
@@ -34,20 +36,14 @@ const ListActiveVouchers = ({navigation}) => {
           if(stripText(value.toString()) === stripText(searchValue)) return true;
           if('faktura'.includes(stripText(searchValue)) && stripText(value.toString()) === 'invoice') return true;
           if('kreditnota'.includes(stripText(searchValue)) && stripText(value.toString()) === 'creditnote') return true;
-
         }
         return false
       })
       setVouchers(list);
     }else {
-      setVouchers(vouchersReducer);
+      setVouchers(vouchersReducer.activeVouchers);
     }
   }
-
-  // const showStatus = (status:string) =>{
-  //   if(status === 'DONE') return done()
-  //   if(status !== 'DONE') return inProcess()
-  // }
 
   const convertTimestamp = (timestamp: number) => {
     const date = new Date(timestamp); 
@@ -67,18 +63,21 @@ const ListActiveVouchers = ({navigation}) => {
     return name
   }
 
+
   return(
     <View style={styles.container}>
       <View style={styles.searchContainer}  >
        
-          <TextInput placeholder={'Skriv her for at søge ...'} value={searchValue} style={styles.textField}  onChangeText={(val) => searchVouchers(val)}/>
+        <TextInput placeholder={'Skriv her for at søge ...'} value={searchValue} style={styles.textField}  onChangeText={(val) => searchVouchers(val)}/>
         
       </View>
       
       <ScrollView>
-        {vouchers.length === 0 ? <Text style={styles.noMatch}>Intet Match</Text> : 
-          vouchers.map( (voucher: any )  => (
-      
+        {vouchers === 0 ?  <Text>Intet match</Text> :
+          
+        
+          vouchers.map((voucher: any )  => (
+    
             <TouchableOpacity style={styles.listBox} onPress={() => navigation.navigate('ShowVoucher', voucher)} key={voucher.voucherToken}>
               <View style={styles.listTextBox}  >
                 <Text style={styles.listHeader}>{convertVendorName(voucher.vendorName)}</Text>
@@ -87,10 +86,10 @@ const ListActiveVouchers = ({navigation}) => {
                 <Text style={styles.listText}>{convertTimestamp(voucher.issueDate)}</Text>
                 <Text style={styles.listText}>{`${voucher.currency} ${convertAmount(voucher.totalAmount)}`}</Text>
 
-              </View>
+              </View> 
               {/* {showStatus(voucher.status)} */}
-              </TouchableOpacity>
-          ))
+            </TouchableOpacity>
+          ))  
         }
       </ScrollView>
       <ActiveVouchersNavigation navigation={navigation}/>
