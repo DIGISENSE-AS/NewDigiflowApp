@@ -1,4 +1,4 @@
-export const GetActiveVouchers = (voucherToken:string ) => {
+export const GetActiveVoucherAction = (voucherToken:string ) => {
   return(async (dispatch) => {
     const response = await fetch(`https://digisense-backend.azurewebsites.net/api/digiflow-app/getVoucherPdf/${voucherToken}`);
 
