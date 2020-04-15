@@ -7,7 +7,7 @@ const AllReducers = combineReducers({
   SignInReducer,
   GetActiveVouchersReducer,
   GetActiveVoucherReducer,
-  
+
 })
 
 

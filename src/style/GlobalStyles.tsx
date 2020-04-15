@@ -57,7 +57,7 @@ export const GlobalStyles = StyleSheet.create({
   },
 
   container:{
-    flex: 1
+   flex: 1
   },
 
   textField: {
@@ -111,7 +111,7 @@ export const GlobalStyles = StyleSheet.create({
   },
 
   pdf:{
-    height: '100%',
+    height: '85%',
     width: '100%',
     padding: 5, 
   }

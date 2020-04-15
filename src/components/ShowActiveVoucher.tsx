@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, BottomNavigation} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {GetActiveVoucherAction} from '../actions/getActiveVoucherAction';
 import Pdf from 'react-native-pdf';
@@ -9,10 +9,11 @@ import {ActiveVoucherNavigation} from '../style/Navigation'
 const ShowActiveVoucher = ({navigation}) => {
   const GetActiveVoucherReducer = useSelector((state:any) => state.GetActiveVoucherReducer)
   const [pdf, setPdf] = useState("")
+  const [voucherToken] =useState(navigation.state.params.voucherToken)
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(GetActiveVoucherAction(navigation.state.params.voucherToken))
+    dispatch(GetActiveVoucherAction(voucherToken))
   },[])
 
   useEffect(() =>{
@@ -22,7 +23,7 @@ const ShowActiveVoucher = ({navigation}) => {
   },[GetActiveVoucherReducer])
 
   return(
-    <View>
+    <View style={GlobalStyles.container}>
       <Pdf source={{uri: `data:application/pdf;base64,${pdf}`}} style={GlobalStyles.pdf}/>
       <ActiveVoucherNavigation navigation={navigation}/>
     </View>
