@@ -108,5 +108,11 @@ export const GlobalStyles = StyleSheet.create({
     textAlign: 'center',
     color: '#808080',
     fontSize: 20
+  },
+
+  pdf:{
+    height: '100%',
+    width: '100%',
+    padding: 5, 
   }
 })

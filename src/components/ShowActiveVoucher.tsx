@@ -2,6 +2,9 @@ import React,{useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {GetActiveVoucherAction} from '../actions/getActiveVoucherAction';
+import Pdf from 'react-native-pdf';
+import {GlobalStyles} from '../style/GlobalStyles'
+import {ActiveVoucherNavigation} from '../style/Navigation'
 
 const ShowActiveVoucher = ({navigation}) => {
   const GetActiveVoucherReducer = useSelector((state:any) => state.GetActiveVoucherReducer)
@@ -16,12 +19,12 @@ const ShowActiveVoucher = ({navigation}) => {
     if(Object.keys(GetActiveVoucherReducer).length !== 0){
       setPdf(GetActiveVoucherReducer.data)
     }
-    console.log(pdf)
   },[GetActiveVoucherReducer])
 
   return(
     <View>
-      <Text>Diller</Text>
+      <Pdf source={{uri: `data:application/pdf;base64,${pdf}`}} style={GlobalStyles.pdf}/>
+      <ActiveVoucherNavigation navigation={navigation}/>
     </View>
   )
 }

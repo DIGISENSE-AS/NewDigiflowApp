@@ -43,3 +43,33 @@ export const ActiveVouchersNavigation = ({navigation}) => {
     </View>
   )
 }
+
+export const ActiveVoucherNavigation = ({navigation}) => {
+  return(
+    <View style={NavigationStyles.navContainer}>
+      <TouchableOpacity style={NavigationStyles.element} >
+        <View style={NavigationStyles.logoStyle}>
+          <SignOutLogo />
+        </View>
+        
+        <Text style={NavigationStyles.menuText}>Log ud</Text>
+      </TouchableOpacity>
+      
+      <TouchableOpacity style={NavigationStyles.element}>
+        <View style={NavigationStyles.logoStyle}>
+          <ScanLogo/>
+        </View>
+        
+        <Text style={NavigationStyles.menuText}>Scan</Text>
+      </TouchableOpacity>
+      
+      <TouchableOpacity style={NavigationStyles.element}>
+        <View style={NavigationStyles.logoStyle}>
+          <MenuLogo/>
+        </View>
+
+        <Text style={NavigationStyles.menuText}>Menu</Text>
+      </TouchableOpacity>
+    </View>
+  )
+}
