@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {GetActiveVoucherAction} from '../actions/getActiveVoucherAction';
 import Pdf from 'react-native-pdf';
 import {GlobalStyles} from '../style/GlobalStyles'
-import {ActiveVoucherNavigation} from '../style/Navigation'
+import {ShowActiveVoucherNavigation} from '../style/navigation/ShowActiveVoucherNavigation'
 
 const ShowActiveVoucher = ({navigation}) => {
   const GetActiveVoucherReducer = useSelector((state:any) => state.GetActiveVoucherReducer)
@@ -25,7 +25,7 @@ const ShowActiveVoucher = ({navigation}) => {
   return(
     <View style={GlobalStyles.container}>
       <Pdf source={{uri: `data:application/pdf;base64,${pdf}`}} style={GlobalStyles.pdf}/>
-      <ActiveVoucherNavigation navigation={navigation}/>
+      <ShowActiveVoucherNavigation navigation={navigation}/>
     </View>
   )
 }

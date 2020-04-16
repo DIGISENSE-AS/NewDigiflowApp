@@ -14,7 +14,7 @@ const LoginScreen = ({navigation}) => {
 
   // will fire when user token get updated by autheticate function
   useEffect(() => {
-    console.log(userToken)
+    
     if(userToken.length !== 0){
       if(userToken.status == 'ok'){navigation.navigate('LoadingScreen')}
       if(userToken.status === 'reject'){setErrorMessage(userToken.reason)}
@@ -25,11 +25,10 @@ const LoginScreen = ({navigation}) => {
 
   // when login button is pressed then user token will update
   const authenticate = () => {
-    console.log('autheticating')
+    
     dispatch(SignInAction(email, password))
   };
 
-  //console.log(userToken)
   return(
     <View>
       <View style={GlobalStyles.top50}>

@@ -41,7 +41,9 @@ export const GlobalStyles = StyleSheet.create({
     paddingBottom: 5,
     paddingLeft: 10,
     paddingRight: 10,
-    borderRadius: 5
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 
   buttonText: {
@@ -111,8 +113,34 @@ export const GlobalStyles = StyleSheet.create({
   },
 
   pdf:{
-    height: '85%',
+    height: '88%',
     width: '100%',
     padding: 5, 
-  }
+  },
+
+  messageBox:{
+    borderWidth: 1,
+    borderColor: 'grey',
+    padding: 10,
+    marginBottom: 10
+  },
+
+  textHeader:{
+    fontWeight: 'bold'
+  },
+
+  textInputContainer:{
+    width: '100%',
+    flexDirection: 'row',
+    padding: 10,
+    justifyContent: 'space-around',
+    backgroundColor: 'grey'
+  },
+
+  notesTextInput:{
+    width: '70%',
+    borderWidth: 1,
+    borderColor: 'black',
+    backgroundColor: 'white'
+  }, 
 })

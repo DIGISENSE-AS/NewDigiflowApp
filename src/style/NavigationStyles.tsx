@@ -8,9 +8,8 @@ export const NavigationStyles = StyleSheet.create({
     backgroundColor: '#FFF',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    position: 'absolute',
+    position: 'relative',
     bottom: 0,
-    marginTop: 5,
   },
 
   element:{

@@ -4,6 +4,7 @@ import LoginScreen from '../components/LoginScreen';
 import LoadingScreen from '../components/LoadingScreen';
 import ListActiveVouchers from '../components/ListActiveVouchers';
 import ShowActiveVoucher from '../components/ShowActiveVoucher';
+import ShowNotesScreen from '../components/ShowNotesScreen';
 
 const screens:any = {
   Login:{
@@ -17,6 +18,9 @@ const screens:any = {
   },
   ShowActiveVoucher: {
     screen: ShowActiveVoucher
+  },
+  ShowNotesScreen: {
+    screen: ShowNotesScreen
   }
 }
 

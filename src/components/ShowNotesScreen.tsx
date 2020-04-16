@@ -1,20 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import {View, Modal, Text, ScrollView, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, ScrollView, TextInput, TouchableOpacity} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {GetActiveVoucherAction} from '../actions/getActiveVoucherAction';
-import ShowActiveVoucher from './ShowActiveVoucher';
+import {GlobalStyles} from '../style/GlobalStyles';
+import {ShowNotesNavigation} from '../style/navigation/ShowNotesNavigation';
 
-
-const ShowNotesScreen = ({voucherToken}) => {
-  const notes = useSelector((state:any) => state.GetActiveVoucherReducer.notes);
-  const showVoucher = useSelector((state:any) => state.ShowActiveVoucherNotesReducer)
-  const [messageText, setMessageText] = useState('');
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(GetActiveVoucherAction(voucherToken))
-    console.log(showVoucher)
-  },[])  
+const ShowNotesScreen = ({navigation}) => {
+  const notes = useSelector((state:any) => state.GetActiveVoucherReducer.notes)
+  const [messageText, setMessageText] = useState('');  
 
   const convertTimestamp = (timestamp: number) => {
     const date = new Date(timestamp); 
@@ -22,22 +14,23 @@ const ShowNotesScreen = ({voucherToken}) => {
   }
 
   return(
-    <View >
-      <View >
+
+      <View style={GlobalStyles.container}>
         <ScrollView>
-        {typeof notes === 'undefined' ? <Text>Henter Noter</Text> :  notes.map((note:any) => 
-          <View >
-            <Text>{`${note.userName} - ${convertTimestamp(parseInt(note.dateAndTime))}`}</Text>
+        {typeof notes === 'undefined' || notes.length === 0  ? <Text>Henter Noter</Text> :  notes.map((note:any) => 
+          <View style={GlobalStyles.messageBox}>
+            <Text style={GlobalStyles.textHeader}>{`${note.userName} - ${convertTimestamp(parseInt(note.dateAndTime))}`}</Text>
             <Text>{note.note}</Text>
           </View>
         )} 
         </ScrollView>
-        <View >
-          <TextInput  value={messageText} onChangeText={val => setMessageText(val)}></TextInput>
-          <TouchableOpacity ><Text >Tilføj Note</Text></TouchableOpacity>
+        <View style={GlobalStyles.textInputContainer}>
+          <TextInput style={GlobalStyles.notesTextInput} value={messageText} onChangeText={val => setMessageText(val)}></TextInput>
+          <TouchableOpacity style={GlobalStyles.button} ><Text style={GlobalStyles.buttonText} >Tilføj Note</Text></TouchableOpacity>
         </View>
+        <ShowNotesNavigation navigation={navigation}/>
       </View>
-    </View>
+      
   )
 }
 
