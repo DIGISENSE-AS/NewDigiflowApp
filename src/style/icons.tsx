@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text} from 'react-native'
-import Svg, { Path, Rect, SvgXml, SvgCss, G } from 'react-native-svg';
+import Svg, { Path, Rect, SvgXml, SvgCss, G, Polygon, Circle} from 'react-native-svg';
 
 export const DigiflowLogo = () => {
   return(
@@ -93,6 +93,36 @@ export const MenuLogo = () =>{
   return(
     <Svg height="100%" id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="100%" fill="grey" >
       <Path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
+    </Svg>
+  )
+}
+
+export const BackLogo = () => {
+  return(
+    <Svg width={'100%'} height={'100%'} viewBox="0 0 612 612">
+      <Path fill="grey" d="M181,289.2L289.2,181c7.5-7.5,19.6-7.5,27,0c7.5,7.5,7.5,19.6,0,27l-78.8,78.8h202.5c10.6,0,19.1,8.6,19.1,19.1
+        s-8.6,19.1-19.1,19.1H237.4l78.8,78.8c7.5,7.5,7.5,19.6,0,27c-7.5,7.5-19.6,7.5-27,0L181,322.8c-4.6-4.6-6-10.9-5-16.8
+        C175,300.1,176.4,293.8,181,289.2z"/>
+    </Svg>
+  )
+}
+
+export const NotesLogo = () => {
+  return (
+    <Svg width={'100%'} height={'100%'} viewBox="0 0 426.7 426.7">
+      <Circle fill="grey" cx="213.4" cy="213.4" r="213.4"/>
+      <Path fill="white" d="M306.7,100.1H120c-12.9,0-23.2,10.4-23.2,23.3l-0.1,210l46.6-46.6h163.3c12.9,0,23.3-10.4,23.3-23.3v-140 C330,110.5,319.6,100.1,306.7,100.1z" />
+      <Polygon fill="black" points="225,240.1 201.7,240.1 201.7,216.7 225,216.7 " />
+      <Polygon fill="black" points="225,193.4 201.7,193.4 201.7,146.7 225,146.7 " />
+    </Svg>
+  )
+} 
+
+export const ApproveLogo = () => {
+  return(
+    <Svg width={'100%'} height={'100%'} viewBox="0 0 490 490">
+      <Path fill="grey" d="M418.3,418.3c95.7-95.7,95.7-250.8,0-346.5s-250.8-95.7-346.5,0s-95.7,250.8,0,346.5S322.7,514,418.3,418.3z"/>
+      <Polygon fill="white" points="157.2,207.6 212.3,262.7 333,142.1 375.7,184.8 255.1,305.4 212.3,348.1 169.6,305.4 114.5,250.3 "/>
     </Svg>
   )
 }

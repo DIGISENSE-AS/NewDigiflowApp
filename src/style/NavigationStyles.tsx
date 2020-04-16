@@ -3,11 +3,13 @@ import {StyleSheet} from 'react-native';
 // will handle all the styling for the bottom navigation menus
 export const NavigationStyles = StyleSheet.create({
   navContainer:{
-    maxWidth: '100%',
-    height: 80,
+    width: '100%',
+    height: 70,
     backgroundColor: '#FFF',
     flexDirection: 'row',
     justifyContent: 'space-around',
+    position: 'relative',
+    bottom: 0,
   },
 
   element:{

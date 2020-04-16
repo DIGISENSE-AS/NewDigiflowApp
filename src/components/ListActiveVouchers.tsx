@@ -3,7 +3,7 @@ import {View, Text, TextInput, ScrollView, TouchableOpacity} from 'react-native'
 import {useSelector, useDispatch} from 'react-redux';
 import {GlobalStyles} from '../style/GlobalStyles';
 import {getActiveVouchersAction} from '../actions/getActiveVouchersAction';
-import {ActiveVouchersNavigation} from '../style/Navigation';
+import {ListActiveVouchersNavigation} from '../style/navigation/ListActiveVouchersNavigation';
 
 const ListActiveVouchers = ({navigation}) => {
   const [searchValue, setSearchValue] = useState('');
@@ -78,7 +78,7 @@ const ListActiveVouchers = ({navigation}) => {
         
           vouchers.map((voucher: any )  => (
     
-            <TouchableOpacity style={styles.listBox} onPress={() => navigation.navigate('ShowVoucher', voucher)} key={voucher.voucherToken}>
+            <TouchableOpacity style={styles.listBox} onPress={() => navigation.navigate('ShowActiveVoucher', voucher)} key={voucher.voucherToken}>
               <View style={styles.listTextBox}  >
                 <Text style={styles.listHeader}>{convertVendorName(voucher.vendorName)}</Text>
                 <Text style={styles.listText}>{voucher.appendixNo}</Text>
@@ -92,7 +92,7 @@ const ListActiveVouchers = ({navigation}) => {
           ))  
         }
       </ScrollView>
-      <ActiveVouchersNavigation navigation={navigation}/>
+      <ListActiveVouchersNavigation navigation={navigation}/>
     </View>
   )
 }
