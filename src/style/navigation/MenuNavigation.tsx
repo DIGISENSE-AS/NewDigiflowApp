@@ -1,13 +1,18 @@
-import React from 'react'; 
+import React, {useState} from 'react'; 
 import {View, Text, TouchableOpacity} from 'react-native';
 import {NavigationStyles} from '../NavigationStyles';
 import {MenuLogo} from '../icons';
 
 
 // reocouring navigation element mooved out of other navigation files to limit redundancy
-export const MenuNavigation = () => {
+// will activate drawer navigation when pressed
+export const MenuNavigation = ({navigation}) => {
+  const openMenu = () => {
+    navigation.openDrawer()
+  }
+
   return (
-    <TouchableOpacity style={NavigationStyles.element}>
+    <TouchableOpacity style={NavigationStyles.element} onPress={openMenu}>
       <View style={NavigationStyles.logoStyle}>
         <MenuLogo/>
       </View>

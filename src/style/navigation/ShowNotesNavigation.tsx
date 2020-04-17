@@ -14,6 +14,8 @@ export const ShowNotesNavigation = ({navigation}) => {
     navigation.navigate('ShowNotesScreen')
   }
 
+  console.log(navigation)
+
   return(
     <View style={NavigationStyles.navContainer}>
       <TouchableOpacity style={NavigationStyles.element} onPress={goBack}>
@@ -24,7 +26,7 @@ export const ShowNotesNavigation = ({navigation}) => {
         <Text style={NavigationStyles.menuText}>Tilbage</Text>
       </TouchableOpacity>
 
-      <MenuNavigation/>
+      <MenuNavigation navigation={navigation}/>
       
     </View>
   )
