@@ -6,14 +6,14 @@ import {ModalStyles} from '../ModalStyles';
 import {MenuNavigation} from './MenuNavigation';
 import {BackLogo, NotesLogo, ApproveLogo} from '../icons';
 
-export const ShowActiveVoucherNavigation = ({navigation}) => {
+export const ShowActiveVoucherNavigation = ({navigation, voucherToken}) => {
   
   const goBack = () => {
     navigation.navigate('ListActiveVouchers')
   }
 
   const goToNotes = () => {
-    navigation.navigate('ShowNotesScreen')
+    navigation.navigate('ShowNotesScreen', voucherToken)
   }
 
   const convertTimestamp = (timestamp: number) => {
