@@ -29,5 +29,5 @@ export const NavigationStyles = StyleSheet.create({
     width: 50,
     justifyContent: 'center',
     alignItems: 'center'  
-  }
+  },
 })
