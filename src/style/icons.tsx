@@ -39,12 +39,13 @@ export const DigiflowLogo = () => {
 }
 
 export const Logo = ({logo}) => {
-  console.log(logo.length)
+  
   return(
     <>
-    {logo.length === 0 ?
-      <Text>Digi Flow</Text>: 
-      <SvgCss preserveAspectRatio="YMinxMin" height="100%" width="100%" xml={logo} />
+    {typeof logo !== 'undefined' && logo.length !== 0 ?
+      <SvgCss preserveAspectRatio="YMinxMin" height="100%" width="100%" xml={logo} />:
+      <Text>Digi Flow</Text>
+      
     }
     </> 
   )

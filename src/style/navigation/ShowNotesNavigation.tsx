@@ -24,7 +24,7 @@ export const ShowNotesNavigation = ({navigation}) => {
         <Text style={NavigationStyles.menuText}>Tilbage</Text>
       </TouchableOpacity>
 
-      <MenuNavigation/>
+      <MenuNavigation navigation={navigation}/>
       
     </View>
   )

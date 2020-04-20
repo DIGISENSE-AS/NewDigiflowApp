@@ -16,10 +16,7 @@ export const ShowActiveVoucherNavigation = ({navigation, voucherToken}) => {
     navigation.navigate('ShowNotesScreen', voucherToken)
   }
 
-  const convertTimestamp = (timestamp: number) => {
-    const date = new Date(timestamp); 
-    return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
-  }
+  
 
   return(
     <View style={NavigationStyles.navContainer}>
@@ -47,7 +44,7 @@ export const ShowActiveVoucherNavigation = ({navigation, voucherToken}) => {
         <Text style={NavigationStyles.menuText}>Noter</Text>
       </TouchableOpacity>
 
-      <MenuNavigation/>
+      <MenuNavigation navigation={navigation}/>
       
     </View>
   )
