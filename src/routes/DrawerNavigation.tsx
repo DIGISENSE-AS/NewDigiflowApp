@@ -11,6 +11,9 @@ import {ActiveVouchersStack} from './ActiveVouchersStack';
 const MenuNavigator = createDrawerNavigator({
   login:{
     screen: LoginStack,
+    navigationOptions:{
+      drawerLabel: () => null
+    }
   },
   ActiveVouchers:{
     screen: ActiveVouchersStack,
