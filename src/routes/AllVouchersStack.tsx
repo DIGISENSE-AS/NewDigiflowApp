@@ -1,11 +1,11 @@
-import ListActiveVouchers from '../components/ListActiveVouchers';
+import ListAllVouchers from '../components/ListAllVouchers';
 import ShowVoucher from '../components/ShowVoucher';
 import ShowNotesScreen from '../components/ShowNotesScreen';
 import { createStackNavigator } from 'react-navigation-stack';
 
 const screens:any = {
-  ListActiveVouchers: {
-    screen: ListActiveVouchers
+  ListAllVouchers: {
+    screen: ListAllVouchers
   },
   ShowVoucher: {
     screen: ShowVoucher
@@ -15,4 +15,4 @@ const screens:any = {
   }
 }
 
-export const ActiveVouchersStack = createStackNavigator(screens);
+export const AllVouchersStack = createStackNavigator(screens);

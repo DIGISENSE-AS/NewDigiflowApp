@@ -3,6 +3,7 @@ import {createDrawerNavigator} from 'react-navigation-drawer';
 import {CostumDrawerNavigation} from '../style/navigation/CustomDrawerNavigation';
 import {LoginStack} from './LoginStack';
 import {ActiveVouchersStack} from './ActiveVouchersStack';
+import {AllVouchersStack} from './AllVouchersStack'
 
 
 // will act as the main navigation handeler
@@ -17,6 +18,9 @@ const MenuNavigator = createDrawerNavigator({
   },
   ActiveVouchers:{
     screen: ActiveVouchersStack,
+  },
+  AllVouchers:{
+    screen: AllVouchersStack,
   }
 },{
   initialRouteName: 'login',
