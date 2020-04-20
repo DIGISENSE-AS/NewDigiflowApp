@@ -6,10 +6,10 @@ import {ModalStyles} from '../ModalStyles';
 import {MenuNavigation} from './MenuNavigation';
 import {BackLogo, NotesLogo, ApproveLogo} from '../icons';
 
-export const ShowActiveVoucherNavigation = ({navigation, voucherToken}) => {
+export const ShowVoucherNavigation = ({navigation, voucherToken}) => {
   
   const goBack = () => {
-    navigation.navigate('ListActiveVouchers')
+    navigation.goBack()
   }
 
   const goToNotes = () => {

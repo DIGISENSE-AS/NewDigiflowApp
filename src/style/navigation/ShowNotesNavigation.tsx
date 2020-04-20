@@ -7,11 +7,11 @@ import {BackLogo, NotesLogo, ApproveLogo} from '../icons';
 export const ShowNotesNavigation = ({navigation}) => {
   
   const goBack = () => {
-    navigation.navigate('ShowActiveVoucher')
+    navigation.goBack();
   }
 
   const goToNotes = () => {
-    navigation.navigate('ShowNotesScreen')
+    navigation.navigate('ShowNotesScreen');
   }
 
   return(
