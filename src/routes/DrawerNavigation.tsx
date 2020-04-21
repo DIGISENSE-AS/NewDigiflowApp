@@ -4,8 +4,12 @@ import {CostumDrawerNavigation} from '../style/navigation/CustomDrawerNavigation
 import {LoginStack} from './LoginStack';
 import {ActiveVouchersStack} from './ActiveVouchersStack';
 import {AllVouchersStack} from './AllVouchersStack';
+<<<<<<< HEAD
 import {ScanVoucherStack} from './ScanVoucherStack'
 import ScanVoucherScreen from '../components/ScanVoucherScreen';
+=======
+import {ScanVoucherStack} from './ScanVoucherStack';
+>>>>>>> c4cccf8c6d86ff5b5aa245558db3bc071c7a4659
 
 
 // will act as the main navigation handeler
@@ -35,7 +39,7 @@ const MenuNavigator = createDrawerNavigator({
     navigationOptions:{
       title: 'Scan bilag'
     }
-  }
+  },
 },{
   initialRouteName: 'login',
   contentComponent: CostumDrawerNavigation,
