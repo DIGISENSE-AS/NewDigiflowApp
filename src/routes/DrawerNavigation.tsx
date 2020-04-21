@@ -30,7 +30,7 @@ const MenuNavigator = createDrawerNavigator({
     }
   },
   ScanVoucher:{
-    screen: ScanVoucherScreen,
+    screen: ScanVoucherStack,
     navigationOptions:{
       title: 'Scan bilag'
     }
