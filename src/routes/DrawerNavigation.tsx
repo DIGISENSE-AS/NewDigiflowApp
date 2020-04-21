@@ -3,7 +3,9 @@ import {createDrawerNavigator} from 'react-navigation-drawer';
 import {CostumDrawerNavigation} from '../style/navigation/CustomDrawerNavigation';
 import {LoginStack} from './LoginStack';
 import {ActiveVouchersStack} from './ActiveVouchersStack';
-import {AllVouchersStack} from './AllVouchersStack'
+import {AllVouchersStack} from './AllVouchersStack';
+import {ScanVoucherStack} from './ScanVoucherStack'
+import ScanVoucherScreen from '../components/ScanVoucherScreen';
 
 
 // will act as the main navigation handeler
@@ -18,9 +20,21 @@ const MenuNavigator = createDrawerNavigator({
   },
   ActiveVouchers:{
     screen: ActiveVouchersStack,
+    navigationOptions:{
+      title: 'Frigiv/Godkend bilag'
+    }
   },
   AllVouchers:{
     screen: AllVouchersStack,
+    navigationOptions:{
+      title: 'Arkiv'
+    }
+  },
+  ScanVoucher:{
+    screen: ScanVoucherScreen,
+    navigationOptions:{
+      title: 'Scan bilag'
+    }
   }
 },{
   initialRouteName: 'login',
