@@ -44,5 +44,18 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaspervh/NewDigiflowApp-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaspervh/NewDigiflowApp-/issues"
+  },
+  "homepage": "https://github.com/kaspervh/NewDigiflowApp-#readme"
 }

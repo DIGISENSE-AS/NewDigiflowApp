@@ -14,9 +14,13 @@ export const ScanVoucherNavigation = ({navigation}) => {
     <View style={NavigationStyles.navContainer}>
 
       <TouchableOpacity style={NavigationStyles.element} onPress={goBack}>
-      <View style={NavigationStyles.logoStyle}>
-        <ScanLogo/>
-      </View>
+        
+      </TouchableOpacity>
+
+      <TouchableOpacity style={NavigationStyles.element} onPress={goBack}>
+        <View style={NavigationStyles.logoStyle}>
+          <ScanLogo/>
+        </View>
       
         <Text style={NavigationStyles.menuText}>Tag billede</Text>
       </TouchableOpacity>

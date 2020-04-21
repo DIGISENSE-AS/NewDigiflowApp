@@ -10,9 +10,7 @@ export const SignInAction = (username: string, password: string) =>{
         password
       })
     })
-
-    console.log(await response.json())
-
+    
     dispatch({
       type: 'SignIn',
       payload: await response.json()
