@@ -10,6 +10,8 @@ export const SignInAction = (username: string, password: string) =>{
         password
       })
     })
+
+    console.log(response)
     
     dispatch({
       type: 'SignIn',

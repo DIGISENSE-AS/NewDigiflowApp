@@ -4,7 +4,7 @@ import {NavigationStyles} from '../NavigationStyles';
 import {MenuNavigation} from './MenuNavigation';
 import {BackLogo, ScanLogo, ApproveLogo} from '../icons';
 
-export const ScanVoucherNavigation = ({navigation}) => {
+export const ScanVoucherNavigation = ({navigation, takePicture}) => {
   
   const goBack = () => {
     navigation.goBack();
@@ -17,7 +17,7 @@ export const ScanVoucherNavigation = ({navigation}) => {
         
       </TouchableOpacity>
 
-      <TouchableOpacity style={NavigationStyles.element} onPress={goBack}>
+      <TouchableOpacity style={NavigationStyles.element} onPress={takePicture}>
         <View style={NavigationStyles.logoStyle}>
           <ScanLogo/>
         </View>
