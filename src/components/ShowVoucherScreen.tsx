@@ -6,7 +6,7 @@ import Pdf from 'react-native-pdf';
 import {GlobalStyles} from '../style/GlobalStyles'
 import {ShowVoucherNavigation} from '../style/navigation/ShowVoucherNavigation'
 
-const ShowVoucher = ({navigation}) => {
+const ShowVoucherScreen = ({navigation}) => {
   const GetActiveVoucherReducer = useSelector((state:any) => state.GetActiveVoucherReducer)
   const [pdf, setPdf] = useState("")
   const [voucherToken] =useState(navigation.state.params.voucherToken)
@@ -30,4 +30,4 @@ const ShowVoucher = ({navigation}) => {
   )
 }
 
-export default ShowVoucher;
+export default ShowVoucherScreen;

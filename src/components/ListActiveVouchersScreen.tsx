@@ -2,25 +2,24 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, TextInput, ScrollView, TouchableOpacity} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {GlobalStyles} from '../style/GlobalStyles';
-import {GetAllVouchersAction} from '../actions/GetAllVouchersAction';
+import {getActiveVouchersAction} from '../actions/getActiveVouchersAction';
 import {ListActiveVouchersNavigation} from '../style/navigation/ListActiveVouchersNavigation';
-import {InprocIcon, DoneIcon} from '../style/icons';
 
-const ListAllVouchers = ({navigation}) => {
+const ListActiveVouchersScreen = ({navigation}) => {
   const [searchValue, setSearchValue] = useState('');
   const [vouchers, setVouchers] = useState([]);
   const userToken = useSelector((state:any) => state.SignInReducer);
-  const vouchersReducer = useSelector((state:any) => state.GetAllVouchersReducer);
+  const vouchersReducer = useSelector((state:any) => state.GetActiveVouchersReducer);
   const styles = GlobalStyles;
   const dispatch = useDispatch();
   
 
   useEffect(() => {
-    dispatch(GetAllVouchersAction(userToken.token));
+    dispatch(getActiveVouchersAction(userToken.token));
   }, [])
 
   useEffect(() => {
-    if(vouchersReducer.length !== 0) {setVouchers(vouchersReducer)}
+    if(vouchersReducer.length !== 0) {setVouchers(vouchersReducer.activeVouchers)}
   },[vouchersReducer])
 
   const searchVouchers = (val: any ) => {
@@ -29,7 +28,7 @@ const ListAllVouchers = ({navigation}) => {
     const stripText = (string: string) => string.replace((/[^a-zA-Z 0-9]+/g), '').toLowerCase()
     const stripedSerachValue = stripText(val)
     if(val !== '' && val!== ' '){
-      
+      console.log(val !== '' && val !== ' ')
       const list = vouchers.filter(voucher => {
         for(let field in voucher ) {
           const value  = (voucher as any)[field];
@@ -51,6 +50,7 @@ const ListAllVouchers = ({navigation}) => {
     return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
   }
 
+
   const convertAmount = (totalAmount: any) => {
     return totalAmount.toFixed(2).replace('.', ',');
     // code below should work but does not, dont know why
@@ -63,11 +63,6 @@ const ListAllVouchers = ({navigation}) => {
     return name
   }
 
-  const showStatus = (status) =>{
-    if(status === "INPROC"){return(<InprocIcon/>)}
-    if(status === "DONE"){return(<DoneIcon/>)}
-  }
-
 
   return(
     <View style={styles.container}>
@@ -78,7 +73,8 @@ const ListAllVouchers = ({navigation}) => {
       </View>
       
       <ScrollView>
-        {vouchers.length === 0  ?  <Text>Intet match</Text> :
+        {vouchers === 0 ?  <Text>Intet match</Text> :
+          
         
           vouchers.map((voucher: any )  => (
     
@@ -91,7 +87,7 @@ const ListAllVouchers = ({navigation}) => {
                 <Text style={styles.listText}>{`${voucher.currency} ${convertAmount(voucher.totalAmount)}`}</Text>
 
               </View> 
-              {showStatus(voucher.status)}
+              {/* {showStatus(voucher.status)} */}
             </TouchableOpacity>
           ))  
         }
@@ -101,4 +97,4 @@ const ListAllVouchers = ({navigation}) => {
   )
 }
 
-export default ListAllVouchers;
+export default ListActiveVouchersScreen;

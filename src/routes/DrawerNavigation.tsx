@@ -1,7 +1,7 @@
 import {createAppContainer} from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import {CostumDrawerNavigation} from '../style/navigation/CustomDrawerNavigation';
-import {LoginStack} from './LoginStack';
+import {SignInStack} from './SignInStack';
 import {ActiveVouchersStack} from './ActiveVouchersStack';
 import {AllVouchersStack} from './AllVouchersStack';
 import {ScanVoucherStack} from './ScanVoucherStack';
@@ -12,7 +12,7 @@ import {ScanVoucherStack} from './ScanVoucherStack';
 // the drawer navigation can take bot stack and screens in as parameters for navigation.
 const MenuNavigator = createDrawerNavigator({
   login:{
-    screen: LoginStack,
+    screen: SignInStack,
     navigationOptions:{
       drawerLabel: () => null
     }

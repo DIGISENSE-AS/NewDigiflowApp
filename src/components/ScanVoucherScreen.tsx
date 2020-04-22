@@ -28,7 +28,6 @@ const ScanVoucherScreen = ({navigation}) =>{
 
   const SendScanedVoucher = () => {
     dispatch(SendScanedVoucherAction(userToken, base64Image));
-    console.log(SendScanedVoucherReducer)
     if(SendScanedVoucherReducer === true){
       Alert.alert("Bilaget er sendt", "Bilaget er nu sendt til rette ansvarlige i Digiflow.");
     }else{

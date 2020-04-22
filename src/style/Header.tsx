@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
 
 Header.defaultProps = {title: 'Digisense'}
 
-export default Header;
+export default Header
