@@ -32,11 +32,11 @@ export const NavigationStyles = StyleSheet.create({
   },
 
   drawerHeader:{
-    height: '40%',
+    height: '30%',
     alignItems: 'center',
     justifyContent: 'center',
     margin: 0,
-    backgroundColor: 'blue'
+    backgroundColor: '#131C8D'
   },
 
   drawerLogoContainer:{
@@ -45,7 +45,7 @@ export const NavigationStyles = StyleSheet.create({
   },
 
   drawerNavigationOptions:{
-    height: '50%',
+    height: '60%',
     margin: 0
   },
 

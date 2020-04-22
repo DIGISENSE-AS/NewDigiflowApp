@@ -6,16 +6,18 @@ import Pdf from 'react-native-pdf';
 import {GlobalStyles} from '../style/GlobalStyles'
 import {ShowVoucherNavigation} from '../style/navigation/ShowVoucherNavigation'
 
-const ShowVoucher = ({navigation}) => {
+const ShowVoucherScreen = ({navigation}) => {
   const GetActiveVoucherReducer = useSelector((state:any) => state.GetActiveVoucherReducer)
   const [pdf, setPdf] = useState("")
   const [voucherToken] =useState(navigation.state.params.voucherToken)
   const dispatch = useDispatch();
 
+  // gets data from db when page is loading
   useEffect(() => {
     dispatch(GetActiveVoucherAction(voucherToken))
   },[])
 
+  // fills state with pdf data when get active voucher reducher is not empty
   useEffect(() =>{
     if(Object.keys(GetActiveVoucherReducer).length !== 0){
       setPdf(GetActiveVoucherReducer.data)
@@ -30,4 +32,4 @@ const ShowVoucher = ({navigation}) => {
   )
 }
 
-export default ShowVoucher;
+export default ShowVoucherScreen;

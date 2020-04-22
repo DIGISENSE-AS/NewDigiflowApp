@@ -2,33 +2,37 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, TextInput, ScrollView, TouchableOpacity} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {GlobalStyles} from '../style/GlobalStyles';
-import {getActiveVouchersAction} from '../actions/getActiveVouchersAction';
-import {ListActiveVouchersNavigation} from '../style/navigation/ListActiveVouchersNavigation';
+import {GetAllVouchersAction} from '../actions/GetAllVouchersAction';
+import {ListAllVouchersNavigation} from '../style/navigation/ListAllVouchersNavigation';
+import {InprocIcon, DoneIcon} from '../style/icons';
 
-const ListActiveVouchers = ({navigation}) => {
+const ListAllVouchersScreen = ({navigation}) => {
   const [searchValue, setSearchValue] = useState('');
   const [vouchers, setVouchers] = useState([]);
   const userToken = useSelector((state:any) => state.SignInReducer);
-  const vouchersReducer = useSelector((state:any) => state.GetActiveVouchersReducer);
+  const vouchersReducer = useSelector((state:any) => state.GetAllVouchersReducer);
   const styles = GlobalStyles;
   const dispatch = useDispatch();
   
-
+  // will get active vouchers from all vouchers action
   useEffect(() => {
-    dispatch(getActiveVouchersAction(userToken.token));
+    dispatch(GetAllVouchersAction(userToken.token));
   }, [])
 
+  // if there are vouchers in get all vouchers reducer 
+  // it will put them in vouchers state
   useEffect(() => {
-    if(vouchersReducer.length !== 0) {setVouchers(vouchersReducer.activeVouchers)}
+    if(vouchersReducer.length !== 0) {setVouchers(vouchersReducer)}
   },[vouchersReducer])
 
+  // will handle showing search results from searchbar
   const searchVouchers = (val: any ) => {
     setSearchValue(val)
 
     const stripText = (string: string) => string.replace((/[^a-zA-Z 0-9]+/g), '').toLowerCase()
     const stripedSerachValue = stripText(val)
     if(val !== '' && val!== ' '){
-      console.log(val !== '' && val !== ' ')
+      
       const list = vouchers.filter(voucher => {
         for(let field in voucher ) {
           const value  = (voucher as any)[field];
@@ -45,22 +49,29 @@ const ListActiveVouchers = ({navigation}) => {
     }
   }
 
+  // will handle showing search results from searchbar
   const convertTimestamp = (timestamp: number) => {
     const date = new Date(timestamp); 
     return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
   }
 
-
+  // will convert number value into danish value
   const convertAmount = (totalAmount: any) => {
     return totalAmount.toFixed(2).replace('.', ',');
     // code below should work but does not, dont know why
     // return parseFloat(totalAmount.toFixed(2)).toLocaleString('da-DK');
   }
 
+  // will sanitize vendor name
   const convertVendorName = (vendorName: string) => {
     let name: string = vendorName
     if(name.includes('&amp;')){name = name.replace('&amp;', '&')}
     return name
+  }
+
+  const showStatus = (status) =>{
+    if(status === "INPROC"){return(<InprocIcon/>)}
+    if(status === "DONE"){return(<DoneIcon/>)}
   }
 
 
@@ -73,8 +84,7 @@ const ListActiveVouchers = ({navigation}) => {
       </View>
       
       <ScrollView>
-        {vouchers === 0 ?  <Text>Intet match</Text> :
-          
+        {vouchers.length === 0  ?  <Text>Intet match</Text> :
         
           vouchers.map((voucher: any )  => (
     
@@ -87,14 +97,14 @@ const ListActiveVouchers = ({navigation}) => {
                 <Text style={styles.listText}>{`${voucher.currency} ${convertAmount(voucher.totalAmount)}`}</Text>
 
               </View> 
-              {/* {showStatus(voucher.status)} */}
+              {showStatus(voucher.status)}
             </TouchableOpacity>
           ))  
         }
       </ScrollView>
-      <ListActiveVouchersNavigation navigation={navigation}/>
+      <ListAllVouchersNavigation navigation={navigation}/>
     </View>
   )
 }
 
-export default ListActiveVouchers;
+export default ListAllVouchersScreen;

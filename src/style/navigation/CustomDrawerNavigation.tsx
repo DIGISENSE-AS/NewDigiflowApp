@@ -6,18 +6,18 @@ import {useSelector, useDispatch} from 'react-redux';
 import {Logo, SignOutLogo} from '../icons';
 import {SignOutAction} from '../../actions/SignInAction';
 
-
-
 export const CostumDrawerNavigation = (props) => {
   const navigation = props.navigation; 
   const dispatch = useDispatch();
   const userToken = useSelector((state:any) => state.SignInReducer);
 
+  // will remove all user data from memory and redirect back to sigin screen 
   const signOut = () =>{
     dispatch(SignOutAction())
     navigation.navigate('Login')
   }
 
+  // closes drawer navigation
   const closeMenu = () => {
     navigation.closeDrawer();
   }

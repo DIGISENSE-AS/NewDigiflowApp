@@ -14,22 +14,26 @@ const ShowNotesScreen = ({navigation}) => {
   const [voucherToken, setVoucherToken] = useState('');
   const dispatch = useDispatch();
 
+  // sets states with data from reducers when getActiveVoucherReducer has loaded
   useEffect(() => {
     setVoucherToken(navigation.state.params)
     setNotes(GetActiveVoucherReducer.notes)
   },[GetActiveVoucherReducer])
 
+  // fils states with data if there is any notes connected to voucher
   useEffect(() =>{
     if(SendNotesReducer.length !== 0){
       setNotes(SendNotesReducer.notes)
     }
   },[SendNotesReducer])
 
+  // sets c# timestamp to danish date
   const convertTimestamp = (timestamp: number) => {
     const date = new Date(timestamp); 
     return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
   }
 
+  // updates notes when a new note has been written and sent
   const updateNotes = () =>{
     dispatch(SendNoteAction(userToken, voucherToken, messageText));
   }

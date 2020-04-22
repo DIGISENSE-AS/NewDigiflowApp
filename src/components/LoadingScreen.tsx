@@ -9,6 +9,7 @@ const LoadingScreen = ({navigation}) => {
   // gets data from authenticateUserReducer
   const userToken = useSelector((state:any) => state.SignInReducer)
 
+  // will wait for 3 seconds before navigating to main screen
   useEffect(() =>{
     setTimeout(() => {
       navigation.navigate('ListActiveVouchers')
@@ -22,7 +23,6 @@ const LoadingScreen = ({navigation}) => {
     if(userToken.logoSVG === ''){return '#143D8D'}
   }
 
-  const showLogo = () => {if(userToken.length !== 0){return userToken.logoSVG}}  
 
   return(
     <>

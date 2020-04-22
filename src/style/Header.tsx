@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 
@@ -15,7 +15,7 @@ const Header = ({title}) => {
 const styles = StyleSheet.create({
   header: {
     height: 60, 
-    backgroundColor: 'blue',
+    backgroundColor: '#131C8D',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
 
 Header.defaultProps = {title: 'Digisense'}
 
-export default Header;
+export default Header

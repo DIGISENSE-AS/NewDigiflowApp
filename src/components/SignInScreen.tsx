@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {GlobalStyles} from '../style/GlobalStyles';
 import {SignInAction} from '../actions/SignInAction';
 
-const LoginScreen = ({navigation}) => {
+const SignInScreen = ({navigation}) => {
   const [errorMessage, setErrorMessage] = useState();
   const [email, setEmail] = useState(); 
   const [password, setPassword] = useState();
@@ -48,4 +48,4 @@ const LoginScreen = ({navigation}) => {
   )
 }
 
-export default LoginScreen
+export default SignInScreen
