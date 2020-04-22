@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text} from 'react-native'
+import {Text, View} from 'react-native'
 import Svg, { Path, Rect, SvgXml, SvgCss, G, Polygon, Circle} from 'react-native-svg';
 
 export const DigiflowLogo = () => {
@@ -39,15 +39,13 @@ export const DigiflowLogo = () => {
 }
 
 export const Logo = ({logo}) => {
-  
   return(
-    <>
+    <View>
     {typeof logo !== 'undefined' && logo.length !== 0 ?
       <SvgCss preserveAspectRatio="YMinxMin" height="100%" width="100%" xml={logo} />:
-      <Text>Digi Flow</Text>
-      
+      <DigiflowLogo/>
     }
-    </> 
+    </View> 
   )
 }
 

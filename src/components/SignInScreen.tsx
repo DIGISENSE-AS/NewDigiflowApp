@@ -3,6 +3,7 @@ import {View, Text, TextInput, TouchableOpacity, CheckBox} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {GlobalStyles} from '../style/GlobalStyles';
 import {SignInAction} from '../actions/SignInAction';
+import {DigiflowLogo} from '../style/icons'
 
 const SignInScreen = ({navigation}) => {
   const [errorMessage, setErrorMessage] = useState();
@@ -31,7 +32,9 @@ const SignInScreen = ({navigation}) => {
   return(
     <View>
       <View style={GlobalStyles.top50}>
-        <Text>Digiflow</Text>
+        <View style={GlobalStyles.logoContainer}>
+          <DigiflowLogo/>
+        </View> 
       </View>
       <View style={GlobalStyles.bottom40}>
         <Text style={GlobalStyles.errorMessage}>{errorMessage}</Text>
