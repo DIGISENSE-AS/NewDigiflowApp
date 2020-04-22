@@ -1,21 +1,19 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Modal, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Modal, Image, TouchableOpacity, Alert} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {RNCamera} from 'react-native-camera';
 import {GlobalStyles} from '../style/GlobalStyles';
 import {ScanVoucherNavigation} from '../style/navigation/ScanVoucherNavigation';
+import { SendScanedVoucherAction } from '../actions/SendScanedVoucherAction';
 
 
 const ScanVoucherScreen = ({navigation}) =>{
   const dispatch = useDispatch();
   const [base64Image, setBase64Image] = useState('');
   const [showImage, setShowImage] = useState(false);
-  const userToken = useSelector((state:any) => state.SignInReducer.token)
+  const userToken = useSelector((state:any) => state.SignInReducer.token);
+  const SendScanedVoucherReducer = useSelector((state:any) => state.SendScanedVoucherReducer);
   let camera;
-
-  useEffect(() => {
-    console.log('showImmage ', showImage)
-  }, [showImage])
 
   const takePicture = async () =>{
     if(camera){
@@ -23,11 +21,21 @@ const ScanVoucherScreen = ({navigation}) =>{
       const data = await camera.takePictureAsync(options); 
       setBase64Image(data.base64);
       setShowImage(true);
-      console.log(data.base64)
     }
   }
 
   const closeModal = () => setShowImage(false)
+
+  const SendScanedVoucher = () => {
+    dispatch(SendScanedVoucherAction(userToken, base64Image));
+    console.log(SendScanedVoucherReducer)
+    if(SendScanedVoucherReducer === true){
+      Alert.alert("Bilaget er sendt", "Bilaget er nu sendt til rette ansvarlige i Digiflow.");
+    }else{
+      Alert.alert("Send bilag", "Kunne ikke sende bilag. Kontakt Digisense support, og prøv igen senere.");
+    }
+    setShowImage(false);
+  }
 
   return(
     <View style={GlobalStyles.container} >
@@ -41,7 +49,7 @@ const ScanVoucherScreen = ({navigation}) =>{
             <Text style={GlobalStyles.buttonText}>Kasser billede</Text>
           </TouchableOpacity>
           
-          <TouchableOpacity style={GlobalStyles.button}>
+          <TouchableOpacity style={GlobalStyles.button} onPress={SendScanedVoucher}>
             <Text style={GlobalStyles.buttonText}>Send bilag</Text>
           </TouchableOpacity>
         </View>
