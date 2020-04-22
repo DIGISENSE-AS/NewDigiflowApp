@@ -9,6 +9,10 @@ export const GlobalStyles = StyleSheet.create({
     alignItems: 'center'
   },
 
+  logoContainer:{
+    width: '60%',
+  },
+
   bottom40: {
     height: '40%',
     width: '100%',

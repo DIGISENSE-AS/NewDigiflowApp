@@ -27,7 +27,10 @@ const LoadingScreen = ({navigation}) => {
   return(
     <>
       <View style={GlobalStyles.top50}>
-        <Logo logo={userToken.logoSVG}/>
+        <View style={GlobalStyles.logoContainer}>
+          <Logo logo={userToken.logoSVG}/>
+        </View>
+        
       </View>
       <View style={GlobalStyles.bottom40}>
         <Spinner color={spinnerColor()}  type={"Wave"} />

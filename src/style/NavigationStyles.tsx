@@ -36,7 +36,7 @@ export const NavigationStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: 0,
-    backgroundColor: '#131C8D'
+    backgroundColor: '#efefef'
   },
 
   drawerLogoContainer:{
