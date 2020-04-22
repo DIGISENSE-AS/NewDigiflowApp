@@ -12,10 +12,12 @@ const ShowVoucherScreen = ({navigation}) => {
   const [voucherToken] =useState(navigation.state.params.voucherToken)
   const dispatch = useDispatch();
 
+  // gets data from db when page is loading
   useEffect(() => {
     dispatch(GetActiveVoucherAction(voucherToken))
   },[])
 
+  // fills state with pdf data when get active voucher reducher is not empty
   useEffect(() =>{
     if(Object.keys(GetActiveVoucherReducer).length !== 0){
       setPdf(GetActiveVoucherReducer.data)

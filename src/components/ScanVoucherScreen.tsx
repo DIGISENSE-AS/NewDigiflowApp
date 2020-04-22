@@ -15,6 +15,7 @@ const ScanVoucherScreen = ({navigation}) =>{
   const SendScanedVoucherReducer = useSelector((state:any) => state.SendScanedVoucherReducer);
   let camera;
 
+  // handles data pick from camera and sets image state to a base64 string 
   const takePicture = async () =>{
     if(camera){
       const options ={quality: 0.50, base64: true, forceUpOrientation: true, fixOrientation: true, pauseAfterCapture: true }
@@ -26,6 +27,7 @@ const ScanVoucherScreen = ({navigation}) =>{
 
   const closeModal = () => setShowImage(false)
 
+  // sends base64inage state to backend, and delivers an alert based on the response from the server.
   const SendScanedVoucher = () => {
     dispatch(SendScanedVoucherAction(userToken, base64Image));
     if(SendScanedVoucherReducer === true){

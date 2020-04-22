@@ -14,15 +14,18 @@ const ListAllVouchersScreen = ({navigation}) => {
   const styles = GlobalStyles;
   const dispatch = useDispatch();
   
-
+  // will get active vouchers from all vouchers action
   useEffect(() => {
     dispatch(GetAllVouchersAction(userToken.token));
   }, [])
 
+  // if there are vouchers in get all vouchers reducer 
+  // it will put them in vouchers state
   useEffect(() => {
     if(vouchersReducer.length !== 0) {setVouchers(vouchersReducer)}
   },[vouchersReducer])
 
+  // will handle showing search results from searchbar
   const searchVouchers = (val: any ) => {
     setSearchValue(val)
 
@@ -46,17 +49,20 @@ const ListAllVouchersScreen = ({navigation}) => {
     }
   }
 
+  // will handle showing search results from searchbar
   const convertTimestamp = (timestamp: number) => {
     const date = new Date(timestamp); 
     return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
   }
 
+  // will convert number value into danish value
   const convertAmount = (totalAmount: any) => {
     return totalAmount.toFixed(2).replace('.', ',');
     // code below should work but does not, dont know why
     // return parseFloat(totalAmount.toFixed(2)).toLocaleString('da-DK');
   }
 
+  // will sanitize vendor name
   const convertVendorName = (vendorName: string) => {
     let name: string = vendorName
     if(name.includes('&amp;')){name = name.replace('&amp;', '&')}

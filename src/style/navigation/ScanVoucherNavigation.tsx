@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, Modal, ScrollView, TextInput} from 'react-native';
 import {NavigationStyles} from '../NavigationStyles';
 import {MenuNavigation} from './MenuNavigation';
-import {BackLogo, ScanLogo, ApproveLogo} from '../icons';
+import {TakePictureLogo} from '../icons';
 
 export const ScanVoucherNavigation = ({navigation, takePicture}) => {
   
@@ -19,7 +19,7 @@ export const ScanVoucherNavigation = ({navigation, takePicture}) => {
 
       <TouchableOpacity style={NavigationStyles.element} onPress={takePicture}>
         <View style={NavigationStyles.logoStyle}>
-          <ScanLogo/>
+          <TakePictureLogo/>
         </View>
       
         <Text style={NavigationStyles.menuText}>Tag billede</Text>
