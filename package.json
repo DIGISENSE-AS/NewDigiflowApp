@@ -13,6 +13,7 @@
     "@react-native-community/masked-view": "^0.1.7",
     "react": "16.11.0",
     "react-native": "0.62.0",
+    "react-native-camera": "^3.23.1",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-pdf": "^6.1.1",
     "react-native-reanimated": "^1.7.1",
@@ -43,5 +44,18 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaspervh/NewDigiflowApp-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaspervh/NewDigiflowApp-/issues"
+  },
+  "homepage": "https://github.com/kaspervh/NewDigiflowApp-#readme"
 }

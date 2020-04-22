@@ -11,6 +11,8 @@ export const SignInAction = (username: string, password: string) =>{
       })
     })
 
+    console.log(response)
+    
     dispatch({
       type: 'SignIn',
       payload: await response.json()
