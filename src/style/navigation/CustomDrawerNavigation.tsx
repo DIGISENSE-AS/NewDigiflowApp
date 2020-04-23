@@ -34,14 +34,15 @@ export const CostumDrawerNavigation = (props) => {
       </ScrollView>
       
       <View style={NavigationStyles.drawerLinkContainer}>
-        <TouchableOpacity style={NavigationStyles.drawerLink} onPress={signOut}>
-          <Text style={NavigationStyles.drawerText}>Log ud</Text>
-          {/* <SignOutLogo style={NavigationStyles.drawerLogo}/> */}
-        </TouchableOpacity>
 
         <TouchableOpacity style={NavigationStyles.drawerLink} onPress={closeMenu}>
           <Text style={NavigationStyles.drawerText}>Luk menu</Text>
           {/* <SignOutLogo style={NavigationStyles.drawerLogo}/> */}
+        </TouchableOpacity>
+
+        <TouchableOpacity style={NavigationStyles.drawerLink} onPress={signOut}>
+          <Text style={NavigationStyles.drawerTextGrey}>Log ud</Text>
+          {/* <SignOutLogo /> */}
         </TouchableOpacity>
       
        </View>

@@ -6,8 +6,7 @@ import {ModalStyles} from '../ModalStyles';
 import {MenuNavigation} from './MenuNavigation';
 import {BackLogo, NotesLogo, ApproveLogo} from '../icons';
 
-export const ShowVoucherNavigation = ({navigation, voucherToken}) => {
-  
+export const ShowVoucherNavigation = ({navigation, voucherToken, voucherStatus, setShowModal}) => {
   const goBack = () => {
     navigation.goBack()
   }
@@ -16,7 +15,7 @@ export const ShowVoucherNavigation = ({navigation, voucherToken}) => {
     navigation.navigate('ShowNotesScreen', voucherToken)
   }
 
-  
+  const openModal = () => setShowModal(true)
 
   return(
     <View style={NavigationStyles.navContainer}>
@@ -28,21 +27,24 @@ export const ShowVoucherNavigation = ({navigation, voucherToken}) => {
         <Text style={NavigationStyles.menuText}>Tilbage</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={NavigationStyles.element} >
-        <View style={NavigationStyles.logoStyle}>
-          <ApproveLogo />
-        </View>
-        
-        <Text style={NavigationStyles.menuText}>Godkend/frigiv</Text>
-      </TouchableOpacity>
+      {voucherStatus !== 'INPROC' ? 
+        <TouchableOpacity style={NavigationStyles.element} onPress={goToNotes}>
+          <View style={NavigationStyles.logoStyle}>
+            <NotesLogo/>
+          </View>
+          
+          <Text style={NavigationStyles.menuText}>Noter</Text>
+        </TouchableOpacity> :
 
-      <TouchableOpacity style={NavigationStyles.element} onPress={goToNotes}>
-        <View style={NavigationStyles.logoStyle}>
-          <NotesLogo/>
-        </View>
-        
-        <Text style={NavigationStyles.menuText}>Noter</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={NavigationStyles.element} onPress={openModal}>
+          <View style={NavigationStyles.logoStyle}>
+            <NotesLogo/>
+          </View>
+
+          <Text style={NavigationStyles.menuText}>HåndterBilag</Text>
+        </TouchableOpacity>
+      }
+      
 
       <MenuNavigation navigation={navigation}/>
       

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TextInput, ScrollView, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, ScrollView, TouchableOpacity, Modal} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {GlobalStyles} from '../style/GlobalStyles';
 import {getActiveVouchersAction} from '../actions/getActiveVouchersAction';
@@ -8,9 +8,10 @@ import {ListActiveVouchersNavigation} from '../style/navigation/ListActiveVouche
 const ListActiveVouchersScreen = ({navigation}) => {
   const [searchValue, setSearchValue] = useState('');
   const [vouchers, setVouchers] = useState([]);
+  const [showModal, setShowModal] = useState(true)
   const userToken = useSelector((state:any) => state.SignInReducer);
   const vouchersReducer = useSelector((state:any) => state.GetActiveVouchersReducer);
-  const styles = GlobalStyles;
+
   const dispatch = useDispatch();
   
   // will get active vouchers from active vouchers action
@@ -70,10 +71,10 @@ const ListActiveVouchersScreen = ({navigation}) => {
 
 
   return(
-    <View style={styles.container}>
-      <View style={styles.searchContainer}  >
+    <View style={GlobalStyles.container}>
+      <View style={GlobalStyles.searchContainer}  >
        
-        <TextInput placeholder={'Skriv her for at søge ...'} value={searchValue} style={styles.textField}  onChangeText={(val) => searchVouchers(val)}/>
+        <TextInput placeholder={'Skriv her for at søge ...'} value={searchValue} style={GlobalStyles.textField}  onChangeText={(val) => searchVouchers(val)}/>
         
       </View>
       
@@ -83,13 +84,13 @@ const ListActiveVouchersScreen = ({navigation}) => {
         
           vouchers.map((voucher: any )  => (
     
-            <TouchableOpacity style={styles.listBox} onPress={() => navigation.navigate('ShowVoucher', voucher)} key={voucher.voucherToken}>
-              <View style={styles.listTextBox}  >
-                <Text style={styles.listHeader}>{convertVendorName(voucher.vendorName)}</Text>
-                <Text style={styles.listText}>{voucher.appendixNo}</Text>
-                <Text style={styles.listText}>{voucher.type === 'INVOICE' ? 'Faktura' : 'Kreditnota'}</Text>
-                <Text style={styles.listText}>{convertTimestamp(voucher.issueDate)}</Text>
-                <Text style={styles.listText}>{`${voucher.currency} ${convertAmount(voucher.totalAmount)}`}</Text>
+            <TouchableOpacity style={GlobalStyles.listBox} onPress={() => navigation.navigate('ShowVoucher', voucher, true)} key={voucher.voucherToken}>
+              <View style={GlobalStyles.listTextBox}  >
+                <Text style={GlobalStyles.listHeader}>{convertVendorName(voucher.vendorName)}</Text>
+                <Text style={GlobalStyles.listText}>{voucher.appendixNo}</Text>
+                <Text style={GlobalStyles.listText}>{voucher.type === 'INVOICE' ? 'Faktura' : 'Kreditnota'}</Text>
+                <Text style={GlobalStyles.listText}>{convertTimestamp(voucher.issueDate)}</Text>
+                <Text style={GlobalStyles.listText}>{`${voucher.currency} ${convertAmount(voucher.totalAmount)}`}</Text>
 
               </View> 
               {/* {showStatus(voucher.status)} */}
@@ -97,7 +98,11 @@ const ListActiveVouchersScreen = ({navigation}) => {
           ))  
         }
       </ScrollView>
+
+      
       <ListActiveVouchersNavigation navigation={navigation}/>
+
+      
     </View>
   )
 }
