@@ -9,13 +9,13 @@ const screens:any = {
   ListActiveVouchers: {
     screen: ListActiveVouchersScreen,
     navigationOptions: {
-      header: <Header title='Godkend/Frigiv bilag'/>
+      header: <Header title='Håndter bilag'/>
     }
   },
   ShowVoucher: {
     screen: ShowVoucherScreen,
     navigationOptions: {
-      header: <Header title='Vis Bilag'/>
+      header: <Header title='Vis bilag'/>
     }
   },
   ShowNotesScreen: {

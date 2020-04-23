@@ -70,8 +70,8 @@ const ListAllVouchersScreen = ({navigation}) => {
   }
 
   const showStatus = (status) =>{
-    if(status === "INPROC"){return(<InprocIcon/>)}
-    if(status === "DONE"){return(<DoneIcon/>)}
+    if(status === "INPROC"){return(<Text style={GlobalStyles.moveLeft}>Igang</Text>)}
+    if(status === "DONE"){return(<Text style={GlobalStyles.moveLeft}>Afviklet</Text>)}
   }
 
 

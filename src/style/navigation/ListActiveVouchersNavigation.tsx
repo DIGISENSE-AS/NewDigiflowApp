@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Modal} from 'react-native';
 import {NavigationStyles} from '../NavigationStyles';
 import {ScanLogo} from '../icons';
 import {MenuNavigation} from './MenuNavigation'
@@ -23,6 +23,8 @@ export const ListActiveVouchersNavigation = ({navigation}) => {
         
         <Text style={NavigationStyles.menuText}>Scan bilag</Text>
       </TouchableOpacity>
+
+      
       
       <MenuNavigation navigation={navigation}/>
       

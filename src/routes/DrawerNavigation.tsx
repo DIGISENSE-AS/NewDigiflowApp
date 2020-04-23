@@ -20,7 +20,7 @@ const MenuNavigator = createDrawerNavigator({
   ActiveVouchers:{
     screen: ActiveVouchersStack,
     navigationOptions:{
-      title: 'Frigiv/Godkend bilag'
+      title: 'Håndter bilag'
     }
   },
   AllVouchers:{

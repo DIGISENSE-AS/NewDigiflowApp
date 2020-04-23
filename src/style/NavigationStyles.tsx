@@ -50,16 +50,19 @@ export const NavigationStyles = StyleSheet.create({
   },
 
   drawerLinkContainer:{
-    height: '20%'
+    height: '10%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    position: 'relative',
+    bottom: 0,
   },
 
   drawerLink:{
+    height: '100%',
     flexDirection: 'row',
-    height: 40,
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingLeft: 20,
-    backgroundColor: '#fafafa'
+    padding: 20,
   },
 
   drawerLogo:{
@@ -68,6 +71,11 @@ export const NavigationStyles = StyleSheet.create({
 
   drawerText: {
     fontWeight: 'bold'
+  },
+
+  drawerTextGrey: {
+    fontWeight: 'bold',
+    color: '#D3D3D3'
   }
 
 })

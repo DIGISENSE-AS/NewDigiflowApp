@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import { ModalStyles } from './ModalStyles';
 
 export const GlobalStyles = StyleSheet.create({
   
@@ -147,4 +148,51 @@ export const GlobalStyles = StyleSheet.create({
     borderColor: 'black',
     backgroundColor: 'white'
   }, 
+
+  modalBackground:{
+    height: '100%',
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
+  },
+
+  modalMenu:{
+    height: '100%',
+    width: '60%', 
+    backgroundColor:'white', 
+  },
+
+  modalHeader: {
+    width: '100%',
+    height: '30%', 
+    backgroundColor: '#efefef',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  modalLogoContainer: {
+    height: 100,
+    width: 100
+  },
+
+  modalHeadline: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 2
+  },
+
+  modalHeadlineText:{
+    fontSize: 16,
+    fontWeight: 'bold'
+  },
+
+  modalButton: {
+    width: '100%', 
+    padding: 10,
+    backgroundColor: '#efefef',
+    marginBottom: 2,
+  },
+
+  modalButtonText:{fontWeight: 'bold'}
 })
