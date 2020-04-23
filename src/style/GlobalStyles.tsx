@@ -152,47 +152,24 @@ export const GlobalStyles = StyleSheet.create({
   modalBackground:{
     height: '100%',
     width: '100%',
-    flexDirection: 'row',
     justifyContent: 'flex-end'
   },
 
   modalMenu:{
-    height: '100%',
-    width: '60%', 
-    backgroundColor:'white', 
+    height: '40%',
+    width: '100%', 
+    backgroundColor:'white',
   },
 
-  modalHeader: {
-    width: '100%',
-    height: '30%', 
-    backgroundColor: '#efefef',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  modalLogoContainer: {
-    height: 100,
-    width: 100
-  },
-
-  modalHeadline: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginBottom: 2
-  },
-
-  modalHeadlineText:{
-    fontSize: 16,
-    fontWeight: 'bold'
-  },
 
   modalButton: {
     width: '100%', 
     padding: 10,
     backgroundColor: '#efefef',
-    marginBottom: 2,
+    marginBottom: 4,
+    alignItems: 'center',
   },
 
-  modalButtonText:{fontWeight: 'bold'}
+  modalButtonText:{fontWeight: 'bold', color: '#131C8D'},
+  modalButtonTextRed:{fontWeight: 'bold', color: 'red'}
 })

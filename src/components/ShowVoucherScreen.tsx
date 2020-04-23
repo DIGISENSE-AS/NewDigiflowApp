@@ -41,45 +41,37 @@ const ShowVoucherScreen = ({navigation}) => {
       <Pdf source={{uri: `data:application/pdf;base64,${pdf}`}} style={GlobalStyles.pdf}/>
       <ShowVoucherNavigation navigation={navigation} voucherToken={voucherToken} voucherStatus={voucherStatus} setShowModal={setShowModal}/>
       
-      <Modal visible={showModal} transparent={true}  >
+      <Modal visible={showModal} transparent={true} animationType='slide' >
         <View style={GlobalStyles.modalBackground}>
           <View style={GlobalStyles.modalMenu}>
-            <View style={GlobalStyles.modalHeader}>
-              <View style={GlobalStyles.modalLogoContainer}>
-                <Logo logo={userToken.logoSVG}/>
-              </View>
-              
-            </View>
-            <View style={GlobalStyles.modalHeadline}>
-              <Text style={GlobalStyles.modalHeadlineText}>Håndter bilag</Text>
-            </View>
+
             <ScrollView>
 
               <TouchableOpacity style={GlobalStyles.modalButton}>
-                <Text style={GlobalStyles.modalButtonText}>Godkend bilag</Text>
+                <Text style={GlobalStyles.modalButtonText}>Godkend</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={GlobalStyles.modalButton}>
-                <Text style={GlobalStyles.modalButtonText}>Frigiv bilag</Text>
+                <Text style={GlobalStyles.modalButtonText}>Frigiv </Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={GlobalStyles.modalButton}>
-                <Text style={GlobalStyles.modalButtonText}>Vidresend bilag</Text>
+                <Text style={GlobalStyles.modalButtonText}>Videresend</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={GlobalStyles.modalButton}>
-                <Text style={GlobalStyles.modalButtonText}>Afvis bilag</Text>
+                <Text style={GlobalStyles.modalButtonText}>Afvis</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={GlobalStyles.modalButton} onPress={goToNotes}>
                 <Text style={GlobalStyles.modalButtonText}>Vis noter</Text>
               </TouchableOpacity>
 
-            </ScrollView>
-
-            <TouchableOpacity style={GlobalStyles.modalButton} onPress={closeModal}>
-                <Text style={GlobalStyles.modalButtonText}>Luk håndter bilag</Text>
+              <TouchableOpacity style={GlobalStyles.modalButton} onPress={closeModal}>
+                <Text style={GlobalStyles.modalButtonTextRed}>Luk menu</Text>
               </TouchableOpacity>
+
+            </ScrollView>
           </View>
         </View>
       </Modal>
