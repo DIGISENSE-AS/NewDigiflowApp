@@ -123,6 +123,8 @@ export const GlobalStyles = StyleSheet.create({
     padding: 5, 
   },
 
+
+
   messageBox:{
     borderWidth: 1,
     borderColor: 'grey',
@@ -149,18 +151,59 @@ export const GlobalStyles = StyleSheet.create({
     backgroundColor: 'white'
   }, 
 
-  modalBackground:{
+  //handles styling for reject voucher
+  rejectContainer: {
+    height: '88%',
+    width: '100%',
+    backgroundColor: 'white',
+    alignItems: 'center',
+    padding:20,
+  },
+
+  rejectText:{
+    marginBottom:20,
+  },
+
+  rejectTextBox:{
+    borderWidth: 1,
+    borderColor: '#131C8D',
+    borderRadius: 15,
+    width: '100%',
+    marginBottom: 20
+  },
+
+  rejectTextBoxText: {color: 'white'},
+
+  rejectButton:{
+    width: '100%',
+    marginBottom: 10,
+    backgroundColor: '#131C8D',
+    padding: 5,
+    borderRadius: 5,
+    flexDirection: 'row', 
+    justifyContent: 'center'
+  },
+
+  // will handle the modal action menu
+  modalBackgroundMenu:{
     height: '100%',
     width: '100%',
     justifyContent: 'flex-end'
   },
 
+  modalBackgroundDialouge:{
+    height: '100%',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
   modalMenu:{
-    height: '40%',
+    minHeight: '10%',
+    maxHeight: '40%',
     width: '100%', 
     backgroundColor:'white',
   },
-
 
   modalButton: {
     width: '100%', 

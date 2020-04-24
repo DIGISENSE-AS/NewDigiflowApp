@@ -6,7 +6,7 @@ import {ModalStyles} from '../ModalStyles';
 import {MenuNavigation} from './MenuNavigation';
 import {BackLogo, NotesLogo, ApproveLogo} from '../icons';
 
-export const ShowVoucherNavigation = ({navigation, voucherToken, voucherStatus, setShowModal}) => {
+export const ShowVoucherNavigation = ({navigation, voucherToken, voucherStatus, setMenuModal}) => {
   const goBack = () => {
     navigation.goBack()
   }
@@ -15,7 +15,7 @@ export const ShowVoucherNavigation = ({navigation, voucherToken, voucherStatus, 
     navigation.navigate('ShowNotesScreen', voucherToken)
   }
 
-  const openModal = () => setShowModal(true)
+  const openMenuModal = () => setMenuModal(true)
 
   return(
     <View style={NavigationStyles.navContainer}>
@@ -36,7 +36,7 @@ export const ShowVoucherNavigation = ({navigation, voucherToken, voucherStatus, 
           <Text style={NavigationStyles.menuText}>Noter</Text>
         </TouchableOpacity> :
 
-        <TouchableOpacity style={NavigationStyles.element} onPress={openModal}>
+        <TouchableOpacity style={NavigationStyles.element} onPress={openMenuModal}>
           <View style={NavigationStyles.logoStyle}>
             <NotesLogo/>
           </View>

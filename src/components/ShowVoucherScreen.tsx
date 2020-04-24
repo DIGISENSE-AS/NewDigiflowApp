@@ -1,19 +1,22 @@
 import React,{useEffect, useState} from 'react';
-import {View, Text, Modal, ScrollView, TouchableOpacity} from 'react-native';
+import {View, Text, Modal, ScrollView, TouchableOpacity, TextInput} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {GetActiveVoucherAction} from '../actions/getActiveVoucherAction';
 import Pdf from 'react-native-pdf';
 import {GlobalStyles} from '../style/GlobalStyles';
 import {ShowVoucherNavigation} from '../style/navigation/ShowVoucherNavigation';
-import {Logo} from '../style/icons';
+
 
 const ShowVoucherScreen = ({navigation}) => {
   const GetActiveVoucherReducer = useSelector((state:any) => state.GetActiveVoucherReducer);
   const userToken = useSelector((state:any) => state.SignInReducer);
   const [pdf, setPdf] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  const [showMenuModal, setMenuModal] = useState(false);
+  const [showSendToModal, setSendToModal] = useState(false);
+  const [showRejectModal, setShowRejectModal] = useState(false);
   const [voucherToken] =useState(navigation.state.params.voucherToken);
   const [voucherStatus] = useState(navigation.state.params.status)
+  const [fakeUsers] = useState(['Gunner Reesen', 'Willie stroker', 'Ho Lee Phok', ])
   const dispatch = useDispatch();
 
   // gets data from db when page is loading
@@ -30,19 +33,32 @@ const ShowVoucherScreen = ({navigation}) => {
 
   // will navigate to notes screen and close modal
   const goToNotes = () => {
-    setShowModal(false)
-    navigation.navigate('ShowNotesScreen', voucherToken)
+    closeMenuModal();
+    console.log(navigation.navigate('ShowNotesScreen', voucherToken))
   }
   
-  const closeModal = () => setShowModal(false)
+  const closeMenuModal = () => setMenuModal(false)
+
+  const openSendToModal = () => {
+    closeMenuModal()
+    setSendToModal(true);
+  }
+
+  const closeSendToModal = () => setSendToModal(false)
+
+  const goToRejectVoucher = () => {
+    closeMenuModal();
+    navigation.navigate('RejectVoucherScreen')
+  }
 
   return(
     <View style={GlobalStyles.container}>
       <Pdf source={{uri: `data:application/pdf;base64,${pdf}`}} style={GlobalStyles.pdf}/>
-      <ShowVoucherNavigation navigation={navigation} voucherToken={voucherToken} voucherStatus={voucherStatus} setShowModal={setShowModal}/>
+      <ShowVoucherNavigation navigation={navigation} voucherToken={voucherToken} voucherStatus={voucherStatus} setMenuModal={setMenuModal}/>
       
-      <Modal visible={showModal} transparent={true} animationType='slide' >
-        <View style={GlobalStyles.modalBackground}>
+      {/* modal will pop up when you press 'håndter bilaget */}
+      <Modal visible={showMenuModal} transparent={true} animationType='slide' >
+        <View style={GlobalStyles.modalBackgroundMenu}>
           <View style={GlobalStyles.modalMenu}>
 
             <ScrollView>
@@ -55,11 +71,11 @@ const ShowVoucherScreen = ({navigation}) => {
                 <Text style={GlobalStyles.modalButtonText}>Frigiv </Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={GlobalStyles.modalButton}>
+              <TouchableOpacity style={GlobalStyles.modalButton} onPress={openSendToModal}>
                 <Text style={GlobalStyles.modalButtonText}>Videresend</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={GlobalStyles.modalButton}>
+              <TouchableOpacity style={GlobalStyles.modalButton} onPress={goToRejectVoucher}>
                 <Text style={GlobalStyles.modalButtonText}>Afvis</Text>
               </TouchableOpacity>
 
@@ -67,10 +83,32 @@ const ShowVoucherScreen = ({navigation}) => {
                 <Text style={GlobalStyles.modalButtonText}>Vis noter</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={GlobalStyles.modalButton} onPress={closeModal}>
+              <TouchableOpacity style={GlobalStyles.modalButton} onPress={closeMenuModal}>
                 <Text style={GlobalStyles.modalButtonTextRed}>Luk menu</Text>
               </TouchableOpacity>
 
+            </ScrollView>
+          </View>
+        </View>
+      </Modal>
+
+      {/* shows modal when you want to send voucher to another user */}
+      <Modal visible={showSendToModal} transparent={true} animationType='slide' >
+        <View style={GlobalStyles.modalBackgroundMenu}>
+          <View style={GlobalStyles.modalMenu}>
+
+            <ScrollView>
+
+              {fakeUsers.map(fu => 
+                <TouchableOpacity style={GlobalStyles.modalButton}>
+                  <Text style={GlobalStyles.modalButtonText}>{fu}</Text>
+                </TouchableOpacity>
+              )}
+
+              <TouchableOpacity style={GlobalStyles.modalButton} onPress={closeSendToModal}>
+                <Text style={GlobalStyles.modalButtonTextRed}>Luk menu</Text>
+              </TouchableOpacity>
+              
             </ScrollView>
           </View>
         </View>
