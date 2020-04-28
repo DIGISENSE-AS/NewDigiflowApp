@@ -39,7 +39,7 @@ const MenuNavigator = createDrawerNavigator({
   ChangeCompanyStack: {
     screen: ChangeCompanyStack,
     navigationOptions: {
-      title: 'Skift Organisation'
+      title: 'Skift selskab'
     }
   }
 },{
