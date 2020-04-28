@@ -1,20 +1,37 @@
 import React, {useEffect} from 'react'
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {View} from 'react-native'
 import {GlobalStyles} from '../style/GlobalStyles';
 import {Logo} from '../style/icons';
 import Spinner from 'react-native-spinkit';
+import {GetAllCompaniesAction} from '../actions/GetAllCompaniesAction';
+import {CurrentComapanyAction} from '../actions/CurrentCompanyAction';
 
 const LoadingScreen = ({navigation}) => {
+  const dispatch = useDispatch();
   // gets data from authenticateUserReducer
-  const userToken = useSelector((state:any) => state.SignInReducer)
+  const userToken = useSelector((state:any) => state.SignInReducer);
+  const allCompanies = useSelector((state:any) => state.GetAllCompaniesReducer);
+  const currentCompany = useSelector((state:any) => state.currentCompanyReducer);
 
   // will wait for 3 seconds before navigating to main screen
   useEffect(() =>{
-    setTimeout(() => {
-      navigation.navigate('ListActiveVouchers')
-    }, 3000)
+    dispatch(GetAllCompaniesAction(userToken.token))
   },[])
+
+  useEffect(() =>{
+    if(allCompanies.length !== 0){
+      dispatch(CurrentComapanyAction(allCompanies[0]))
+    }
+  },[allCompanies])
+
+  useEffect(() =>  {
+    if(currentCompany !== null){
+      setTimeout(() => {
+        navigation.navigate('ListActiveVouchers')
+      }, 1000)
+    }
+  }, [])
 
   // sets spinner color based on what data is in user token
   const spinnerColor = () => {
@@ -22,7 +39,6 @@ const LoadingScreen = ({navigation}) => {
     if(userToken.logoSvg !== 0){return userToken.logoSVG}
     if(userToken.logoSVG === ''){return '#143D8D'}
   }
-
 
   return(
     <>
@@ -37,7 +53,6 @@ const LoadingScreen = ({navigation}) => {
       </View>
     </>
   )
-
 }
 
 export default LoadingScreen;

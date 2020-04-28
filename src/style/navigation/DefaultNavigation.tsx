@@ -4,7 +4,7 @@ import {NavigationStyles} from '../NavigationStyles';
 import {MenuNavigation} from './MenuNavigation'
 
 // will render view for Active vouchers screen
-export const ListAllVouchersNavigation = ({navigation}) => {
+export const DefaultNavigation = ({navigation}) => {
 
   return(
     <View style={NavigationStyles.navContainer}>

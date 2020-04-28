@@ -5,6 +5,7 @@ import {SignInStack} from './SignInStack';
 import {ActiveVouchersStack} from './ActiveVouchersStack';
 import {AllVouchersStack} from './AllVouchersStack';
 import {ScanVoucherStack} from './ScanVoucherStack';
+import {ChangeCompanyStack} from './ChangeCompanyStack';
 
 
 // will act as the main navigation handeler
@@ -35,6 +36,12 @@ const MenuNavigator = createDrawerNavigator({
       title: 'Scan bilag'
     }
   },
+  ChangeCompanyStack: {
+    screen: ChangeCompanyStack,
+    navigationOptions: {
+      title: 'Skift Organisation'
+    }
+  }
 },{
   initialRouteName: 'login',
   contentComponent: CostumDrawerNavigation,
