@@ -3,7 +3,7 @@ import {View, Text, TextInput, ScrollView, TouchableOpacity} from 'react-native'
 import {useSelector, useDispatch} from 'react-redux';
 import {GlobalStyles} from '../style/GlobalStyles';
 import {GetAllVouchersAction} from '../actions/GetAllVouchersAction';
-import {ListAllVouchersNavigation} from '../style/navigation/ListAllVouchersNavigation';
+import {DefaultNavigation} from '../style/navigation/DefaultNavigation';
 import {InprocIcon, DoneIcon} from '../style/icons';
 
 const ListAllVouchersScreen = ({navigation}) => {
@@ -57,9 +57,7 @@ const ListAllVouchersScreen = ({navigation}) => {
 
   // will convert number value into danish value
   const convertAmount = (totalAmount: any) => {
-    return totalAmount.toFixed(2).replace('.', ',');
-    // code below should work but does not, dont know why
-    // return parseFloat(totalAmount.toFixed(2)).toLocaleString('da-DK');
+    return parseFloat(totalAmount.toFixed(2)).toString().replace(/\./g, ',').replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
   // will sanitize vendor name
@@ -102,7 +100,7 @@ const ListAllVouchersScreen = ({navigation}) => {
           ))  
         }
       </ScrollView>
-      <ListAllVouchersNavigation navigation={navigation}/>
+      <DefaultNavigation navigation={navigation}/>
     </View>
   )
 }

@@ -3,7 +3,7 @@ import {View, Text, TextInput, ScrollView, TouchableOpacity, Modal} from 'react-
 import {useSelector, useDispatch} from 'react-redux';
 import {GlobalStyles} from '../style/GlobalStyles';
 import {getActiveVouchersAction} from '../actions/getActiveVouchersAction';
-import {ListActiveVouchersNavigation} from '../style/navigation/ListActiveVouchersNavigation';
+import {DefaultNavigation} from '../style/navigation/DefaultNavigation';
 
 const ListActiveVouchersScreen = ({navigation}) => {
   const [searchValue, setSearchValue] = useState('');
@@ -57,9 +57,7 @@ const ListActiveVouchersScreen = ({navigation}) => {
 
   // will convert number value into danish value
   const convertAmount = (totalAmount: any) => {
-    return totalAmount.toFixed(2).replace('.', ',');
-    // code below should work but does not, dont know why
-    // return parseFloat(totalAmount.toFixed(2)).toLocaleString('da-DK');
+    return parseFloat(totalAmount.toFixed(2)).toString().replace(/\./g, ',').replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
   // will sanitize vendor name 
@@ -100,7 +98,7 @@ const ListActiveVouchersScreen = ({navigation}) => {
       </ScrollView>
 
       
-      <ListActiveVouchersNavigation navigation={navigation}/>
+      <DefaultNavigation navigation={navigation}/>
 
       
     </View>

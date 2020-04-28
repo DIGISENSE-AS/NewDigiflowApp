@@ -5,6 +5,8 @@ import GetActiveVoucherReducer from './GetActiveVoucherReducer';
 import GetAllVouchersReducer from './GetAllVouchersReducer';
 import SendNoteReducer from './SendNoteReducer';
 import SendScanedVoucherReducer from './SendScanedVoucherReducer';
+import GetAllCompaniesReducer from './GetAllCompaniesReducer';
+import CurrentCompanyReducer from './CurrentCompanyReducer';
 
 const AllReducers = combineReducers({
   SignInReducer,
@@ -13,6 +15,8 @@ const AllReducers = combineReducers({
   SendNoteReducer, 
   GetAllVouchersReducer,
   SendScanedVoucherReducer,
+  GetAllCompaniesReducer,
+  CurrentCompanyReducer,
 })
 
 
