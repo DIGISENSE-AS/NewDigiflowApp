@@ -9,19 +9,19 @@ const screens:any = {
   ListAllVouchers: {
     screen: ListAllVouchersScreen,
     navigationOptions: {
-      header: <Header title='Arkiv'/>
+      header: () =>  <Header title='Arkiv'/>
     }
   },
   ShowVoucher: {
     screen: ShowVoucherScreen,
     navigationOptions: {
-      header: <Header title='Vis bilag'/>
+      header: () =>  <Header title='Vis bilag'/>
     }
   },
   ShowNotesScreen: {
     screen: ShowNotesScreen,
     navigationOptions: {
-      header: <Header title='Noter'/>
+      header: () =>  <Header title='Noter'/>
     }
   }
 }

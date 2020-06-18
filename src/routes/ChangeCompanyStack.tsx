@@ -7,7 +7,7 @@ const screens:any = {
   ChangeCompanyScreen: {
     screen: ChangeCompanyScreen,
     navigationOptions: {
-      header: <Header title='Skift selskab'/>
+      header: () =>  <Header title='Skift selskab'/>
     }
   }
 }

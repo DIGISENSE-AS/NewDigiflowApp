@@ -1,4 +1,4 @@
-const CurrentCompanyReducer = (state:any = null, action:any) =>{
+const CurrentCompanyReducer = (state:any = '', action:any) =>{
   switch(action.type){
     case 'CurrentCompany':
       return state = action.payload

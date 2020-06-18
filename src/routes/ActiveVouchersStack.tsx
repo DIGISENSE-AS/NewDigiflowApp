@@ -10,26 +10,26 @@ const screens:any = {
   ListActiveVouchers: {
     screen: ListActiveVouchersScreen,
     navigationOptions: {
-      header: <Header title='Håndter bilag'/>
+      header: () =>  <Header title='Håndter bilag'/>
     }
   },
   ShowVoucher: {
     screen: ShowVoucherScreen,
     navigationOptions: {
-      header: <Header title='Vis bilag'/>
+      header: () =>  <Header title='Vis bilag'/>
     },
   },
   ShowNotesScreen: {
     screen: ShowNotesScreen,
     navigationOptions: {
-      header: <Header title='Noter'/>
+      header: () =>  <Header title='Noter'/>
     }
   },
 
   RejectVoucherScreen: {
     screen: RejectVoucherScreen,
     navigationOptions: {
-      header: <Header title='Afvis bilag'/>
+      header: () =>  <Header title='Afvis bilag'/>
     }
   },
 

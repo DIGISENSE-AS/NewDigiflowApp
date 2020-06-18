@@ -7,7 +7,7 @@ const screens:any = {
   ScanVoucher:{
     screen: ScanVoucherScreen,
     navigationOptions: {
-      header: <Header title='Scan bilag'/>
+      header: () =>  <Header title='Scan bilag'/>
     }
   }
 }
