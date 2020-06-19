@@ -4,13 +4,16 @@ import {useSelector, useDispatch} from 'react-redux';
 import {GlobalStyles} from '../style/GlobalStyles';
 import {GetAllVouchersAction} from '../actions/GetAllVouchersAction';
 import {DefaultNavigation} from '../style/navigation/DefaultNavigation';
-import {InprocIcon, DoneIcon} from '../style/icons';
+import {SearchVouchersAction} from '../actions/SearchVouchersAction ';
+import Spinner from 'react-native-spinkit';
 
 const ListAllVouchersScreen = ({navigation}) => {
   const [searchValue, setSearchValue] = useState('');
   const [vouchers, setVouchers] = useState([]);
+  const [loading, setLoading] = useState(false);
   const userToken = useSelector((state:any) => state.SignInReducer);
   const vouchersReducer = useSelector((state:any) => state.GetAllVouchersReducer);
+  const SearchVouchersReducer = useSelector((state:any) => state.SearchVouchersReducer);
   const styles = GlobalStyles;
   const dispatch = useDispatch();
   
@@ -25,28 +28,42 @@ const ListAllVouchersScreen = ({navigation}) => {
     if(vouchersReducer.length !== 0) {setVouchers(vouchersReducer)}
   },[vouchersReducer])
 
-  // will handle showing search results from searchbar
-  const searchVouchers = (val: any ) => {
-    setSearchValue(val)
 
-    const stripText = (string: string) => string.replace((/[^a-zA-Z 0-9]+/g), '').toLowerCase()
-    const stripedSerachValue = stripText(val)
-    if(val !== '' && val!== ' '){
-      
-      const list = vouchers.filter(voucher => {
-        for(let field in voucher ) {
-          const value  = (voucher as any)[field];
-          if(stripText(value.toString()).includes(stripedSerachValue)) return true;
-          if(stripText(value.toString()) === stripText(searchValue)) return true;
-          if('faktura'.includes(stripText(searchValue)) && stripText(value.toString()) === 'invoice') return true;
-          if('kreditnota'.includes(stripText(searchValue)) && stripText(value.toString()) === 'creditnote') return true;
-        }
-        return false
-      })
-      setVouchers(list);
-    }else {
-      setVouchers(vouchersReducer.activeVouchers);
+  // works with searchVouchers function
+  useEffect(() => {
+    if(loading === true){
+      const stripText = (string: string) => string.replace((/[^a-zA-Z 0-9]+/g), '').toLowerCase()
+      const searchHits = [];
+
+      if(searchValue.length !== 0 && searchValue !== ''){
+        console.log('in search',SearchVouchersReducer)
+        vouchersReducer.map(voucher => {
+          if(SearchVouchersReducer.includes(voucher.voucherToken)){searchHits.push(voucher)}
+          for(let field in voucher ) {
+            const value  = (voucher as any)[field];
+            if(stripText(value.toString()).includes(stripText(searchValue))){searchHits.push(voucher)};
+            if(stripText(value.toString()) === stripText(searchValue)){searchHits.push(voucher)};
+            if('faktura'.includes(stripText(searchValue)) && stripText(value.toString()) === 'invoice'){searchHits.push(voucher)};
+            if('kreditnota'.includes(stripText(searchValue)) && stripText(value.toString()) === 'creditnote'){searchHits.push(voucher)};
+          }
+        })
+        
+        setVouchers(searchHits)
+      }else{
+        setVouchers(vouchersReducer)
+      }
     }
+    setLoading(false)
+
+  }, [SearchVouchersReducer])
+
+  // had the problem that state didnt change fast enugh
+  // when i called the search voucher action in the same function as the reducer call
+  // so for now this function will work in concordance with the use effect that only lstens to
+  // search vouchers reducer change, i will find a better solution in the future
+  const searchVouchers = () => {
+    setLoading(true)
+    dispatch(SearchVouchersAction(userToken.token, searchValue)) 
   }
 
   // will handle showing search results from searchbar
@@ -77,12 +94,14 @@ const ListAllVouchersScreen = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.searchContainer}  >
        
-        <TextInput placeholder={'Skriv her for at søge ...'} value={searchValue} style={styles.textField}  onChangeText={(val) => searchVouchers(val)}/>
+        <TextInput placeholder={'Skriv her for at søge ...'} value={searchValue} style={styles.textField}  onChangeText={(val) => setSearchValue(val)}/>
+        <TouchableOpacity style={styles.searchButton} onPress={searchVouchers}><Text style={styles.buttonText}>Søg</Text></TouchableOpacity>
         
       </View>
       
-      <ScrollView>
-        {vouchers.length === 0  ?  <Text>Intet match</Text> :
+      <ScrollView >
+        <View style={styles.voucherList}>
+        {loading === true ?  <Spinner color={'#143D8D'}  type={"Wave"} /> : vouchers.length === 0  ?  <Text>Intet match</Text> :
         
           vouchers.map((voucher: any )  => (
     
@@ -99,6 +118,7 @@ const ListAllVouchersScreen = ({navigation}) => {
             </TouchableOpacity>
           ))  
         }
+        </View>
       </ScrollView>
       <DefaultNavigation navigation={navigation}/>
     </View>

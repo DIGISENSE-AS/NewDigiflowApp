@@ -64,16 +64,32 @@ export const GlobalStyles = StyleSheet.create({
   },
 
   container:{
-   flex: 1
+   flex: 1,
   },
 
   textField: {
+    marginTop: 1,
     color: 'black',
-    width: '100%',
+    width: '80%',
+    height: 60
+  },
+
+  searchButton: {
+    marginTop: 1,
+    backgroundColor: '#131C8D',
+    width: '20%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 60
+  },
+
+  voucherList:{
+    alignItems: 'center'
   },
 
   listBox: {
     minHeight: 100,
+    width:'100%',
     backgroundColor: '#e3e3e3',
     borderBottomWidth: 1,
     borderBottomColor: '#a9a9a9',
@@ -122,8 +138,6 @@ export const GlobalStyles = StyleSheet.create({
     width: '100%',
     padding: 5, 
   },
-
-
 
   messageBox:{
     borderWidth: 1,
