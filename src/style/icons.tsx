@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native'
 import Svg, { Path, Rect, SvgXml, SvgCss, G, Polygon, Circle} from 'react-native-svg';
+import {useSelector} from 'react-redux';
 
 export const DigiflowLogo = () => {
   return(
@@ -69,9 +70,10 @@ export const SignOutLogo = () => {
 } 
 
 export const TakePictureLogo = () => {
+  const currentCompany = useSelector((state:any) => state.CurrentCompanyReducer)
   return(
     <Svg width={'100%'} height={'100%'} viewBox="0 0 548.2 548.2">
-      <Path fill="#131C8D" d="M274.1,548.2L274.1,548.2C122.7,548.2,0,425.5,0,274.1l0,0C0,122.7,122.7,0,274.1,0l0,0
+      <Path fill={currentCompany.color} d="M274.1,548.2L274.1,548.2C122.7,548.2,0,425.5,0,274.1l0,0C0,122.7,122.7,0,274.1,0l0,0
         c151.4,0,274.1,122.7,274.1,274.1l0,0C548.2,425.5,425.5,548.2,274.1,548.2z" />
       <Path fill="white" d="M424.3,176.1c-8.5-8.5-18.7-12.7-30.7-12.7h-38l-8.7-23.1c-2.2-5.5-6.1-10.3-11.8-14.3c-5.7-4-11.6-6-17.6-6
         h-86.9c-6,0-11.9,2-17.6,6c-5.7,4-9.6,8.8-11.8,14.3l-8.7,23.1h-38c-12,0-22.2,4.2-30.7,12.7s-12.7,18.7-12.7,30.7v152.1
