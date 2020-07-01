@@ -6,7 +6,7 @@ import {useSelector} from 'react-redux';
 const Header = ({title}) => {
   const currentCompany = useSelector((state:any) => state.CurrentCompanyReducer)
   return(
-    <View style={styles.header}>
+    <View style={{...styles.header, backgroundColor: currentCompany.color}}>
       <View style={styles.headerDivider}><Text style={styles.headerText}>{title}</Text></View>
       <View style={styles.headerDivider}><Text style={styles.companyText}>{currentCompany.name}</Text></View>
     </View>

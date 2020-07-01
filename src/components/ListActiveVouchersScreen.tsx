@@ -15,7 +15,7 @@ const ListActiveVouchersScreen = ({navigation}) => {
   const userToken = useSelector((state:any) => state.SignInReducer);
   const vouchersReducer = useSelector((state:any) => state.GetActiveVouchersReducer);
   const SearchVouchersReducer = useSelector((state:any) => state.SearchVouchersReducer);
-
+  const currentCompany = useSelector((state:any) => state.CurrentCompanyReducer)
   const dispatch = useDispatch();
   
   // will get active vouchers from active vouchers action
@@ -90,7 +90,7 @@ const ListActiveVouchersScreen = ({navigation}) => {
       <View style={GlobalStyles.searchContainer}  >
        
         <TextInput placeholder={'Skriv her for at søge ...'} value={searchValue} style={GlobalStyles.textField}  onChangeText={(val) => setSearchValue(val)}/>
-        <TouchableOpacity style={GlobalStyles.searchButton} onPress={searchVouchers}><Text style={GlobalStyles.buttonText}>Søg</Text></TouchableOpacity>
+        <TouchableOpacity style={{...GlobalStyles.searchButton, backgroundColor: currentCompany.color}} onPress={searchVouchers}><Text style={GlobalStyles.buttonText}>Søg</Text></TouchableOpacity>
 
       </View>
       

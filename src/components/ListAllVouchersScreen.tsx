@@ -14,6 +14,7 @@ const ListAllVouchersScreen = ({navigation}) => {
   const userToken = useSelector((state:any) => state.SignInReducer);
   const vouchersReducer = useSelector((state:any) => state.GetAllVouchersReducer);
   const SearchVouchersReducer = useSelector((state:any) => state.SearchVouchersReducer);
+  const currentCompany = useSelector((state:any) =>state.CurrentCompanyReducer);
   const styles = GlobalStyles;
   const dispatch = useDispatch();
   
@@ -95,7 +96,7 @@ const ListAllVouchersScreen = ({navigation}) => {
       <View style={styles.searchContainer}  >
        
         <TextInput placeholder={'Skriv her for at søge ...'} value={searchValue} style={styles.textField}  onChangeText={(val) => setSearchValue(val)}/>
-        <TouchableOpacity style={styles.searchButton} onPress={searchVouchers}><Text style={styles.buttonText}>Søg</Text></TouchableOpacity>
+        <TouchableOpacity style={{...styles.searchButton, backgroundColor: currentCompany.color}} onPress={searchVouchers}><Text style={styles.buttonText}>Søg</Text></TouchableOpacity>
         
       </View>
       
