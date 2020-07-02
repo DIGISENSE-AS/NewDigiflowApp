@@ -10,10 +10,8 @@ import { Alert } from 'react-native';
 
 const store = createStore(AllReducers, composeWithDevTools(applyMiddleware(thunk)));
 
-
-
-
 const App = () => {
+
   useEffect(() => {
     getPushMessage();
     requestUserPermission();
@@ -21,19 +19,19 @@ const App = () => {
 
 
   const requestUserPermission = async () => {
-    const permission = await messaging().requestPermission({
-      sound: true,
-      announcement: true
-    });
+    const permission = await messaging().requestPermission();
 
-    if(permission){
+    if(await permission){
       console.log('got permission', permission)
     }
   }
 
   const getPushMessage = () => {
+    console.log('getting message')
     const unsubscribe = messaging().onMessage(async remoteMessage => {
-      Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body)
+      const message = remoteMessage.notification
+      console.log('message', message)
+      Alert.alert(message.title, message.body)
     });
 
     return unsubscribe
