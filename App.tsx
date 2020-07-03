@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import Navigator from './src/routes/DrawerNavigation'
-import { Alert } from 'react-native';
+import { Alert, Platform } from 'react-native';
 
 const store = createStore(AllReducers, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -20,18 +20,14 @@ const App = () => {
 
   const requestUserPermission = async () => {
     const permission = await messaging().requestPermission();
-
     if(await permission){
       console.log('got permission', permission)
     }
   }
 
   const getPushMessage = () => {
-    console.log('getting message')
     const unsubscribe = messaging().onMessage(async remoteMessage => {
-      const message = remoteMessage.notification
-      console.log('message', message)
-      Alert.alert(message.title, message.body)
+      Platform.OS  === 'ios' ? Alert.alert(remoteMessage.data.notification.title, remoteMessage.data.notification.body) : Alert.alert(remoteMessage.notification.title, remoteMessage.notification.body)
     });
 
     return unsubscribe
