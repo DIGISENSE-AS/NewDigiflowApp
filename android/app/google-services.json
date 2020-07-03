@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1071873336819",
+    "firebase_url": "https://digiflow-new.firebaseio.com",
+    "project_id": "digiflow-new",
+    "storage_bucket": "digiflow-new.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071873336819:android:ff30fa8356498dc437de86",
+        "android_client_info": {
+          "package_name": "com.digiflowapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071873336819-4m8q1bdr8383egvod9cqe0m1srsjmq8h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCauUBAyXnG43hAzraNNg9oktJHT90nvJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071873336819-4m8q1bdr8383egvod9cqe0m1srsjmq8h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

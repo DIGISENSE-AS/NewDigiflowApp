@@ -61,6 +61,10 @@ target 'DigiflowApp' do
 
   pod 'react-native-camera', :path => '../node_modules/react-native-camera'
 
+
+
+  pod 'RNFBMessaging', :path => '../node_modules/@react-native-firebase/messaging'
+
   target 'DigiflowAppTests' do
     inherit! :complete
     # Pods for testing

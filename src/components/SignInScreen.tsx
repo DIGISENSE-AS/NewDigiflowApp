@@ -4,14 +4,25 @@ import {useDispatch, useSelector} from 'react-redux';
 import {GlobalStyles} from '../style/GlobalStyles';
 import {SignInAction} from '../actions/SignInAction';
 import {DigiflowLogo} from '../style/icons'
+import { firebase } from '@react-native-firebase/messaging';
 
 const SignInScreen = ({navigation}) => {
   const [errorMessage, setErrorMessage] = useState();
   const [email, setEmail] = useState(); 
   const [password, setPassword] = useState();
+  const [deviceId, setDeviceId] = useState()
   const [rememberMe, setRememberMe] = useState(false);
   const userToken = useSelector((state:any) => state.SignInReducer);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    getTokenId().then(id => setDeviceId(id))
+  },[])
+
+  const getTokenId = async () => {
+    const fcmToken = await firebase.messaging().getToken();
+    return fcmToken
+  }
 
   // will fire when user token get updated by autheticate function
   useEffect(() => {
@@ -25,7 +36,7 @@ const SignInScreen = ({navigation}) => {
 
   // when login button is pressed then user token will update
   const authenticate = () => {
-    dispatch(SignInAction(email, password))
+    dispatch(SignInAction(email, password, deviceId))
   };
 
   return(
